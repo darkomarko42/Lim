@@ -37,11 +37,11 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1007"
+     inkscape:window-height="1000"
      id="namedview176"
      showgrid="false"
      inkscape:zoom="7.375"
-     inkscape:cx="7.7904114"
+     inkscape:cx="4.4005809"
      inkscape:cy="20.789405"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -76,4 +76,13 @@
        d="m16 10a6 6 0 0 0 -6 6 6 6 0 0 0 6 6 6 6 0 0 0 6 -6 6 6 0 0 0 -6 -6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1 -4 4 4 4 0 0 1 -4 -4 4 4 0 0 1 4 -4zm0 2a2 2 0 0 0 -2 2 2 2 0 0 0 2 2 2 2 0 0 0 2 -2 2 2 0 0 0 -2 -2z"
        id="path170" />
   </g>
+  <rect
+     width="32"
+     height="1"
+     fill="#FFFFFF"
+     fill-opacity="0.4"
+     id="rect166-5"
+     style="opacity:0.2;fill:#000000;fill-opacity:1"
+     x="0"
+     y="31" />
 </svg>

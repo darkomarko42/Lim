@@ -12,8 +12,8 @@
 @define-color panel_fg black;
 @define-color scrollbar_color mix(@bg_color,@fg_color,0.5);
 
-@define-color colorPrimary @base_color;
-@define-color colorPrimaryBackdrop @colorPrimary;
+@define-color colorPrimary shade(@sidebar_color,0.95);
+@define-color colorPrimaryBackdrop shade(@colorPrimary,1.2);
 @define-color textColorPrimary @fg_color;
 @define-color textColorPrimaryShadow alpha(white,0.5);
 @define-color sidebar_color shade(@bg_color,0.95);
@@ -46,27 +46,27 @@
 @define-color borders shade(@bg_color,0.8);
 @define-color border_color @borders;
 @define-color unfocused_borders @borders;
-@define-color borders_t alpha(black,0.25);
+@define-color borders_t alpha(black,0.3);
 
 @define-color deco alpha(black,0.2);
 
-@define-color selected_bg_color #1987ED;
+@define-color selected_bg_color #2499F1;
 @define-color selected_fg_color #fff;
 @define-color theme_selected_bg_color @selected_bg_color;
 @define-color theme_selected_fg_color @selected_fg_color;
 @define-color theme_unfocused_selected_bg_color @selected_bg_color;
 @define-color theme_unfocused_selected_fg_color @selected_fg_color;
 
-@define-color warning_color #FFC224;
-@define-color error_color #ED1919;
-@define-color success_color #19ED76;
+@define-color warning_color #F0B607;
+@define-color error_color #F14848;
+@define-color success_color #3CC664;
 
 @define-color placeholder_text_color #A8A8A8;
 @define-color link_color @selected_bg_color;
 
 @define-color budgie_tasklist_indicator_color @panel_fg;
 @define-color budgie_tasklist_indicator_color_active @fg_color;
-@define-color budgie_tasklist_indicator_color_active_window @scrollbar_color;
+@define-color budgie_tasklist_indicator_color_active_window @selected_bg_color;
 @define-color budgie_tasklist_indicator_color_attention @error_color;
 
 @define-color tab_base_color @base_color;
@@ -154,7 +154,7 @@
  * Windows Decorations *
  ***********************/
 
-decoration{ box-shadow: 0 8px 16px @shadow,0 0 0 1px @deco; border-radius: 4.0px 4.0px 0 0; margin: 8px;}
+decoration{ box-shadow: 0 8px 16px @shadow,0 0 0 1px @deco; border-radius: 4.0px 4.0px 0 0; margin: 6px;}
 
 decoration:backdrop{ box-shadow: 0 8px 16px alpha(@shadow,0.5),0 0 0 1px @deco; }
 
@@ -227,7 +227,7 @@ window.csd > .titlebar:not(headerbar):backdrop {
 headerbar viewswitcher stack { margin: -2px 0;}
 
 /* this is for ssd titlebars */
-headerbar.default-decoration,.csd headerbar.default-decoration,.default-decoration.titlebar:not(headerbar),.csd .default-decoration.titlebar:not(headerbar){border-bottom: none;}
+headerbar.default-decoration,.csd headerbar.default-decoration,.default-decoration.titlebar:not(headerbar),.csd .default-decoration.titlebar:not(headerbar){}
 
 /***********
  * Dialogs *
@@ -665,9 +665,9 @@ treeview.view:selected,
 treeview.view:selected:focus,
 row.activatable:hover:selected,
 treeview.view:hover:selected,
-treeview.view:hover:selected:focus{ background-image: image(alpha(@selected_bg_color,0.2)); color: @fg_color;}
+treeview.view:hover:selected:focus{ background-image: image(alpha(@fg_color,0.15)); color: @fg_color;}
 
-row.activatable:hover,treeview.view:hover{background-image: image(alpha(@selected_bg_color,0.15)); }
+row.activatable:hover,treeview.view:hover{background-image: image(alpha(@fg_color,0.1)); }
 
 .sidebar .frame { border-width: 1px 0 0 0;}
 
@@ -704,7 +704,7 @@ assistant notebook ,evview.content-view{}
  * Notebooks *
  *************/
 
-notebook.frame{border: none; box-shadow:  0 0 0 1px @borders;}
+notebook.frame{border: 1px solid @borders;}
 
 notebook tab button {padding: 0;}
 
@@ -815,7 +815,7 @@ toolbar {
 
 .primary-toolbar{ 
 	border-color: @borders;
-	border-width: 1px 0 1px 0;
+	border-width: 0px 0 1px 0;
 	border-radius: 0;
 	box-shadow: none;
 }
@@ -972,7 +972,7 @@ dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):
 	border: 1px solid;
 	background-image: none;
 	border-color:	@borders_t;
-	box-shadow: none;
+	box-shadow: 0 1px @button_shadow;
 }
 	
 /* Titlebar Buttons */
@@ -981,7 +981,7 @@ headerbar viewswitcher button,
 .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 .fullscreen headerbar button
-,
+{	background-color: @alt_button; }
 	
 button,
 actionbar viewswitcher button,
@@ -989,7 +989,7 @@ dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-acti
 dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 .inline-toolbar button.flat,
 dialog .titlebutton
-{	background-color: transparent; }
+{	background-color: @button_color; }
 	
 button:hover,
 .inline-toolbar button.flat:hover,
@@ -1003,13 +1003,13 @@ dialog .titlebutton:hover,
 .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
 dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
 spinbutton.horizontal button:hover
-{background-image: image(alpha(currentcolor,0.1));}
+{background-image: image(alpha(@fg_color,0.1));}
 
 button:checked,
 .inline-toolbar button.flat:checked,
 .titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked,
 .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
-.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):checked,
+.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):not(:checked):checked,
 button.flat:checked,
 .titlebutton:checked,
 dialog .titlebutton:checked,
@@ -1022,7 +1022,7 @@ button:active,
 .inline-toolbar button.flat:active,
 .titlebar button.text-button:not(.suggested-action):not(.destructive-action):active,
 .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
-.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
+.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):not(:checked):active,
 button.flat:active,
 .titlebutton:active,
 dialog .titlebutton:active,
@@ -1030,9 +1030,9 @@ dialog .titlebutton:active,
 .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
 dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
 spinbutton.horizontal button:active
-{	background-image: image(alpha(currentcolor,0.2)); box-shadow: none;}
+{	background-image: image(alpha(@fg_color,0.2)); box-shadow: none; }
 
-button:checked:disabled{ background-image: image(alpha(currentcolor,0.2));}
+button:checked:disabled{ background-image: image(alpha(currentcolor,0.2)); border-color: @borders_t;}
 
 /* Disabled Button */
 
@@ -1097,8 +1097,7 @@ spinbutton.horizontal button
 .titlebar.default-decoration { padding: 2px 4px;}
 .titlebar button.sources-button.flat{padding: 2px;}
 
-.titlebutton{border-radius: 9999px;}
-.titlebutton.close{background-color: alpha(@fg_color,0.1);}
+.titlebutton.close{}
 
 /* this is for the new titlebar flat button switcher */
 
@@ -1148,9 +1147,10 @@ button.destructive-action:disabled{
 button.osd {
 	border-radius: 9999px;
 	background-color: @button_color;
+	color: @fg_color;
 }
 
-.osd button{background-color: @button_color;}
+.osd button{background-color: @button_color; color: @fg_color;}
 
 button.osd.image-button {
 	padding: 0;
@@ -1693,6 +1693,7 @@ scale fill {
 scale fill:disabled {	background-color: transparent;}
 
 scale slider {
+	background-clip: border-box;
 	background-color: @base_color;
 	background-image: none;
 	border: 1px solid;
@@ -1851,11 +1852,11 @@ menubar,
 	-GtkWidget-window-dragging: true;
 	padding: 0px;
 	color: @fg_color;
-	background-color: @colorPrimary;
+	background-color: @bg_color;
 }
 
 menubar:backdrop,
-.menubar:backdrop {color: alpha(currentcolor,0.5); }
+.menubar:backdrop {}
 
 menubar > menuitem,
 .menubar > menuitem {
@@ -2392,6 +2393,8 @@ box-shadow: inset 0 -1px mix(@panel_bg,@panel_fg,0.3), inset 0 1px mix(@panel_bg
 .budgie-panel button:not(.launcher):not(.flat):checked,.budgie-panel button.launcher.flat:checked{}
 
 /* BUDGIE POPOVERS */
+
+.budgie-popover .sidebar row{ padding: 12px 0;}
 
 .budgie-popover .container {padding: 6px;}
 
