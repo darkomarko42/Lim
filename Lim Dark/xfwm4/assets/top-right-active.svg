@@ -38,11 +38,11 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1000"
+     inkscape:window-height="1001"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="18.627844"
-     inkscape:cx="-14.926254"
+     inkscape:cx="-16.268331"
      inkscape:cy="10.168857"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -53,17 +53,10 @@
      width="2"
      height="32"
      id="rect2"
-     style="fill:#494949;fill-opacity:1"
+     style="fill:#4c4c4c;fill-opacity:1"
      fill="#E0E0E0" />
   <path
      id="rect4-6"
      style="fill:#ffffff;fill-opacity:1;stroke-width:1;opacity:0.2"
      d="m 0,2e-7 v 1 H 1 V 32 H 2 V 1.0000002 2e-7 H 1 Z" />
-  <rect
-     style="opacity:0.2;fill:#ffffff;fill-opacity:1;stroke-width:0.0862521"
-     id="rect16292"
-     width="1"
-     height="1"
-     x="0"
-     y="31" />
 </svg>

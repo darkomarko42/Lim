@@ -35,11 +35,11 @@
      inkscape:window-y="0"
      inkscape:window-x="0"
      inkscape:cy="13.754855"
-     inkscape:cx="-6.5778777"
+     inkscape:cx="-7.9199546"
      inkscape:zoom="18.627844"
      showgrid="false"
      id="namedview8"
-     inkscape:window-height="1000"
+     inkscape:window-height="1001"
      inkscape:window-width="1920"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0"
@@ -51,7 +51,7 @@
      pagecolor="#ffffff" />
   <rect
      fill="#E0E0E0"
-     style="fill:#555555;fill-opacity:1"
+     style="fill:#4c4c4c;fill-opacity:1"
      id="rect2"
      height="32"
      width="2" />
@@ -62,13 +62,4 @@
      id="rect4"
      height="1"
      width="2" />
-  <rect
-     style="opacity:0.2;fill:#ffffff;fill-opacity:1"
-     fill="#FFFFFF"
-     fill-opacity="0.4"
-     id="rect4-2"
-     height="1"
-     width="2"
-     x="0"
-     y="31" />
 </svg>

@@ -1,7 +1,7 @@
 
 # GTK originally based on Ubuntu Human code
 
-gtk_color_scheme = "fg_color:#222\nbg_color:#f3f3f3\nbase_color:#fff\ntext_color:#222\nselected_bg_color:#2499F1\nselected_fg_color:#fff\ntooltip_bg_color:#000\ntooltip_fg_color:#fff\npanel_bg_color:#000\npanel_fg_color:#fff"
+gtk_color_scheme = "fg_color:#222\nbg_color:#eee\nbase_color:#fff\ntext_color:#222\nselected_bg_color:#0086ff\nselected_fg_color:#fff\ntooltip_bg_color:#000\ntooltip_fg_color:#fff\npanel_bg_color:#000\npanel_fg_color:#fff"
 
 # Comment the following line for large buttons
 gtk-icon-sizes = "gtk-button=16,16"
@@ -48,7 +48,7 @@ style "murrine-default"
   	#GtkScrolledWindow::scrollbar-spacing	= 1 # This sets the spacing between scrollbars.
 
 #	GtkToolbar     :: shadow-type		= GTK_SHADOW_NONE
-    GtkMenuBar     :: shadow-type          = GTK_SHADOW_NONE
+#   GtkMenuBar     :: shadow-type          = GTK_SHADOW_NONE
 
 	GtkWidget      :: link-color           = @selected_bg_color
 	GtkWidget      :: visited-link-color   = shade (0.2, @selected_bg_color)
@@ -185,7 +185,7 @@ style "murrine-tasklist" = "murrine-wide"
 style "murrine-menubar"
 {
 
-	bg[NORMAL] = @bg_color
+	bg[NORMAL] = @base_color
 
 engine "murrine" {
 		contrast                = 1.0
@@ -200,7 +200,7 @@ style "murrine-menu" = "murrine-wider"
   xthickness = 0
   ythickness = 2
 
-	bg[NORMAL] = @bg_color
+	bg[NORMAL] = @base_color
 
 
 	engine "murrine" {
@@ -215,9 +215,9 @@ style "murrine-menu-item"
   xthickness = 0
   ythickness = 4
 
-	bg[PRELIGHT] = mix(0.1,@fg_color, @bg_color)
+	bg[PRELIGHT] = mix(0.1,@fg_color, @base_color)
 	fg[PRELIGHT] = @fg_color
-	bg[SELECTED] = mix(0.1,@fg_color, @bg_color)
+	bg[SELECTED] = mix(0.1,@fg_color, @base_color)
 	fg[SELECTED] = @fg_color
 
 	text[NORMAL]	= @fg_color

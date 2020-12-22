@@ -2,18 +2,18 @@
  * COLORS *
  **********/
 
-@define-color menu_color @bg_color;
+@define-color menu_color @base_color;
 @define-color button_color @base_color;
-@define-color alt_button alpha(@fg_color,0.15);
+@define-color alt_button @button_color;
 @define-color notibg @base_color;
-@define-color wbg alpha(@fg_color,0.15);
+@define-color widget_color alpha(@fg_color,0.2);
 @define-color invertbg alpha(black,0.08);
-@define-color panel_bg shade(@bg_color,0.5);
+@define-color panel_bg shade(@bg_color,0.7);
 @define-color panel_fg white;
 @define-color scrollbar_color mix(@bg_color,@fg_color,0.5);
 
-@define-color colorPrimary shade(@sidebar_color,1.2);
-@define-color colorPrimaryBackdrop shade(@colorPrimary,1.1);
+@define-color colorPrimary @base_color;
+@define-color colorPrimaryBackdrop @colorPrimary;
 @define-color textColorPrimary @fg_color;
 @define-color textColorPrimaryShadow alpha(white,0.5);
 @define-color sidebar_color shade(@bg_color,1.2);
@@ -34,13 +34,13 @@
 @define-color text_view_bg @base_color;
 @define-color content_view_bg @base_color;
 
-@define-color insensitive_bg_color shade(@base_color,0.8);
+@define-color insensitive_bg_color alpha(@widget_color,0.3);
 @define-color insensitive_fg_color alpha(@fg_color,0.5);
 @define-color insensitive_base_color @base_color;
 @define-color unfocused_insensitive_color @insensitive_fg_color;
 
 @define-color highlight alpha(@selected_fg_color,0.5);
-@define-color button_shadow alpha(@shadow,0.5);
+@define-color button_shadow alpha(@shadow,0.2);
 @define-color menu_shadow alpha(@shadow,0.5);
 @define-color shadow alpha(black,0.5);
 @define-color borders shade(@base_color,1.3);
@@ -50,7 +50,7 @@
 
 @define-color deco shade(@colorPrimary,1.3);
 
-@define-color selected_bg_color #2499F1;
+@define-color selected_bg_color #0086ff;
 @define-color selected_fg_color #fff;
 @define-color theme_selected_bg_color @selected_bg_color;
 @define-color theme_selected_fg_color @selected_fg_color;
@@ -158,7 +158,7 @@ decoration{ box-shadow: 0 8px 16px @shadow,0 0 0 1px @deco; border-radius: 4.0px
 
 decoration:backdrop{ box-shadow: 0 8px 16px alpha(@shadow,0.5),0 0 0 1px @deco; }
 
-.csd.popup decoration {box-shadow: 0 1px 2px @menu_shadow;}
+.csd.popup decoration {box-shadow: 0 1px 2px @menu_shadow; 	border-radius: 4.0px;}
 
 dialog decoration, messagedialog decoration, .unified decoration{border-radius: 4.0px;}
 
@@ -227,7 +227,25 @@ window.csd > .titlebar:not(headerbar):backdrop {
 headerbar viewswitcher stack { margin: -2px 0;}
 
 /* this is for ssd titlebars */
-headerbar.default-decoration,.csd headerbar.default-decoration,.default-decoration.titlebar:not(headerbar),.csd .default-decoration.titlebar:not(headerbar){}
+headerbar.default-decoration,.csd headerbar.default-decoration,.default-decoration.titlebar:not(headerbar),.csd .default-decoration.titlebar:not(headerbar){border-bottom: none;}
+ 
+/* this fix headerbar widgets */
+
+headerbar entry,
+headerbar spinbutton,
+headerbar separator:not(.sidebar),
+headerbar button.suggested-action,
+headerbar button.destructive-action,
+headerbar button.text-button:not(.suggested-action):not(.destructive-action),
+headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
+headerbar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio) { margin-top: 4px; margin-bottom: 4px; }
+
+actionbar viewswitcher button,headerbar viewswitcher button { background-color: transparent; background-image: none; border: none; box-shadow: none; border-radius: 0;}
+viewswitcher button:checked{box-shadow: inset -1px 0 alpha(currentcolor,0.2), inset 1px 0 alpha(currentcolor,0.2);}
+
+viewswitcherbar actionbar  { padding: 0;}
+
+.narrow label{font-size: smaller;}
 
 /***********
  * Dialogs *
@@ -764,43 +782,29 @@ notebook tab label {	color: @insensitive_fg_color;	padding: 3px 6px;}
 
 notebook tab:checked label,
 notebook .active-page,
-notebook tab .active-page label {	color: @text_color; font-weight: bold;}
+notebook tab .active-page label {	color: @selected_bg_color; font-weight: bold;}
 
 /************
  * Infobars *
  ************/
- 
 infobar {
 	border-style: none;
 	margin: 0 0 1px 0;
 	font-weight: bold;
 }
 
-infobar.info {
-	background-color: mix(@success_color,@bg_color,0.5);
-}
+infobar.info,infobar.question,infobar.warning,infobar.error {background-color: mix(@bg_color,currentcolor,0.2);}
 
-infobar.question {
-	background-color: mix(@selected_bg_color,@bg_color,0.5);
-}
 
-infobar.warning {
-	background-color: mix(@warning_color,@bg_color,0.5);
-}
-
-infobar.error {
-	background-color: mix(@error_color,@bg_color,0.5);
-}
-
-infobar.info > label, infobar.info, infobar.info button {color: mix(@success_color,@fg_color,0.5);}
-infobar.warning > label, infobar.warning, infobar.warning button {color: mix(@warning_color,@fg_color,0.5);}
-infobar.question > label, infobar.question, infobar.question button {color: mix(@selected_bg_color,@fg_color,0.5);}
-infobar.error > label, infobar.error, infobar.error button {color: mix(@error_color,@fg_color,0.5);}
+infobar.info > label, infobar.info, infobar.info button {color: mix(@success_color,@fg_color,0.2);}
+infobar.warning > label, infobar.warning, infobar.warning button {color: mix(@warning_color,@fg_color,0.2);}
+infobar.question > label, infobar.question, infobar.question button {color: mix(@selected_bg_color,@fg_color,0.2);}
+infobar.error > label, infobar.error, infobar.error button {color: mix(@error_color,@fg_color,0.2);}
 infobar label:disabled{color: alpha(currentcolor,0.5);}
 
-infobar button,
-infobar button:hover,
-infobar button:checked,infobar button:active,
+infobar button:not(.flat){background-color: alpha(currentcolor,0.1); }
+infobar button:not(.flat):hover{background-color: alpha(currentcolor,0.2); }
+infobar button:not(.flat):checked,infobar button:not(.flat):active{background-color: alpha(currentcolor,0.3); }
 infobar button:disabled{background-color: transparent; }
 
 /************
@@ -815,9 +819,9 @@ toolbar {
 
 .primary-toolbar{ 
 	border-color: @borders;
-	border-width: 0px 0 1px 0;
 	border-radius: 0;
 	box-shadow: none;
+	border-width: 0px 0 1px 0;
 }
 
 actionbar {
@@ -849,6 +853,7 @@ searchbar > revealer > box, .location-bar, .search-bar {
  ****************/
 
 spinbutton:not(.vertical),entry {
+	background-clip: padding-box;
 	min-height: 16px;
 	border: 1px solid;
 	padding: 4px;
@@ -858,7 +863,7 @@ spinbutton:not(.vertical),entry {
 	color: @fg_color;
 	border-color: @borders_t;
 	box-shadow: none;
-	background-color: @base_color;
+	background-color: @button_color;
 	background-image: none;
 }
 
@@ -961,10 +966,8 @@ button{
 	}
 	
 button,.titlebar button.text-button:not(.suggested-action):not(.destructive-action),
-.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-action),
-dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 .inline-toolbar button.flat
 {
@@ -974,92 +977,58 @@ dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):
 	border-color:	@borders_t;
 	box-shadow: none;
 }
-	
+
 /* Titlebar Buttons */
 .titlebar button.text-button:not(.suggested-action):not(.destructive-action),
-headerbar viewswitcher button,
-.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 .fullscreen headerbar button
 {	background-color: @alt_button; }
 	
 button,
-actionbar viewswitcher button,
 dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-action),
 dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
-.inline-toolbar button.flat,
-dialog .titlebutton
+.inline-toolbar button.flat
 {	background-color: @button_color; }
+
+/* Hover State */
+.titlebar button.text-button:not(.suggested-action):not(.destructive-action):hover,
+.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
+.fullscreen headerbar button:hover
+{	background-color: mix(@alt_button,@textColorPrimary,0.1); }
 	
 button:hover,
-.inline-toolbar button.flat:hover,
-.titlebar button.text-button:not(.suggested-action):not(.destructive-action):hover,
-.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
-.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):not(:checked):hover,
-button.flat:hover,
-.titlebutton:hover,
-dialog .titlebutton:hover,
-.sidebar-button.image-button:hover,
-.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
-dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
-spinbutton.horizontal button:hover,
-viewswitcher button.radio:hover
-{background-image: image(alpha(@fg_color,0.1));}
+dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-action):hover,
+dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
+.inline-toolbar button.flat:hover
+{	background-color: mix(@button_color,@fg_color,0.1); }
 
-button:checked,
-.inline-toolbar button.flat:checked,
-.sidebar-button.image-button:checked,
-.titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked,
-spinbutton.horizontal button:checked,
-button:checked:active,
-.inline-toolbar button.flat:checked:active,
-button.flat:checked:active,
-.titlebutton:checked:active,
-.sidebar-button.image-button:checked:active,
-.titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked:active,
-spinbutton.horizontal button:checked:active,
-.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked
-{background-color: @scrollbar_color; background-image: none; color: black; box-shadow: none; border-color: transparent; background-clip: border-box;}
-
-button:active,
-.inline-toolbar button.flat:active,
+/* Active State */
 .titlebar button.text-button:not(.suggested-action):not(.destructive-action):active,
-.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
-.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):not(:checked):active,
-button.flat:active,
-.titlebutton:active,
-dialog .titlebutton:active,
-.sidebar-button.image-button:active,
-.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
-dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
-spinbutton.horizontal button:active,
-.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
-dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
-dialog .titlebutton:checked,
-.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):not(:checked):checked,
-viewswitcher button.radio:checked,
-button.flat:checked,
-.titlebutton:checked,
-button.flat:checked:active
-{	background-image: image(alpha(@fg_color,0.2)); box-shadow: none; color: currentcolor;}
+.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
+.fullscreen headerbar button:active
+{	background-color: mix(@alt_button,@textColorPrimary,0.2); }
+	
+button:active,
+dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-action):active,
+dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
+.inline-toolbar button.flat:active
+{	background-color: mix(@button_color,@fg_color,0.2); }
 
-button:checked:disabled,.titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked:disabled{ background-color: alpha(@scrollbar_color,0.5); }
+/* Checked State */
+.titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked,
+.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
+.fullscreen headerbar button:checked
+{	background-color: @scrollbar_color; border-color: transparent; background-clip: border-box; color: black; }
+	
+button:checked,
+dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked,
+dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
+.inline-toolbar button.flat:checked
+{	background-color: @scrollbar_color; border-color: transparent; background-clip: border-box; color: black; }
 
-viewswitcher button.radio:checked:active{background-color: transparent;}
+button:checked:disabled,.titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked:disabled{background-color: alpha(@scrollbar_color,0.5);}
 
-/* Disabled Button */
-
-button:disabled,
-.inline-toolbar button.flat:disabled,
-entry:disabled,
-spinbutton:not(.vertical):disabled,
-spinbutton:disabled,
-.titlebar button.text-button:not(.suggested-action):not(.destructive-action):disabled,
-.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):disabled,
-.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):disabled,
-headerbar viewswitcher button:disabled
-{background-image: none; box-shadow: none; }
-
+/* Disabled State */
 button:disabled,
 .inline-toolbar button.flat:disabled,
 entry:disabled,
@@ -1087,7 +1056,6 @@ headerbar viewswitcher button:disabled,
 
 label:disabled,image:disabled,notebook arrow:disabled,spinbutton:disabled{ color: @insensitive_fg_color;}
 
-
 /* Flat Buttons */
 
 .sidebar-button.image-button { border: none; border-radius: 9999px; -gtk-outline-radius: 9999px;}
@@ -1105,31 +1073,47 @@ viewswitcher button.radio
 	box-shadow: none;
 	background-color: transparent;
 	background-image: none;
-	background-clip: padding-box;
+	background-clip: border-box;
+	color: currentcolor;
 }
+
+/* Hover State */
+button.flat:hover,
+.titlebutton:hover,
+dialog .titlebutton:hover,
+.sidebar-button.image-button:hover,
+.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
+dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
+spinbutton.horizontal button:hover,
+viewswitcher button.radio:hover
+{background-color: alpha(currentcolor,0.1);}
+
+/* Active State */
+button.flat:active,
+.titlebutton:active,
+dialog .titlebutton:active,
+.sidebar-button.image-button:active,
+.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
+dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
+spinbutton.horizontal button:active,
+viewswitcher button.radio:active
+,
+/* Checked State */
+button.flat:checked,
+.titlebutton:checked,
+dialog .titlebutton:checked,
+.sidebar-button.image-button:checked,
+.titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
+dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
+spinbutton.horizontal button:checked,
+viewswitcher button.radio:checked
+{background-color: alpha(currentcolor,0.2);}
 
 .titlebar.default-decoration { padding: 2px 4px;}
 .titlebar button.sources-button.flat{padding: 2px;}
 
-.titlebutton.close{}
-
-/* this is for the new titlebar flat button switcher */
-
-headerbar entry,
-headerbar spinbutton,
-headerbar separator:not(.sidebar),
-headerbar button.suggested-action,
-headerbar button.destructive-action,
-headerbar button.text-button:not(.suggested-action):not(.destructive-action),
-headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
-headerbar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio) { margin-top: 4px; margin-bottom: 4px; }
-
-actionbar viewswitcher button,headerbar viewswitcher button { background-color: transparent; background-image: none; border: none; box-shadow: none; border-radius: 0;}
-viewswitcher button:checked{box-shadow: inset -1px 0 alpha(currentcolor,0.2), inset 1px 0 alpha(currentcolor,0.2);}
-
-viewswitcherbar actionbar  { padding: 0;}
-
-.narrow label{font-size: smaller;}
+.titlebutton{border-radius: 9999px; background-clip: padding-box;}
+.titlebutton.close{box-shadow:inset 0 0 0 9999px alpha(@fg_color,0.15);}
 
 /* Suggested and Destructive Action Buttons*/
 
@@ -1139,10 +1123,14 @@ button.suggested-action{
 	background-clip: border-box;
 }
 
+button.suggested-action:hover{background-color: mix(@selected_bg_color,@fg_color,0.1);}
+button.suggested-action:active{background-color: mix(@selected_bg_color,@fg_color,0.2);}
+button.suggested-action:checked{background-color: mix(@selected_bg_color,@fg_color,0.3);}
+
 button.suggested-action:disabled{
 	background-color: @insensitive_bg_color;
 	color: @insensitive_fg_color;
-	border-color: @borders;
+	border-color: @borders_t;
 }
 
 button.destructive-action{
@@ -1151,20 +1139,29 @@ button.destructive-action{
 	background-clip: border-box;
 }
 
+button.destructive-action:hover{background-color: mix(@error_color,@fg_color,0.1);}
+button.destructive-action:active{background-color: mix(@error_color,@fg_color,0.2);}
+button.destructive-action:checked{background-color: mix(@error_color,@fg_color,0.3);}
+
 button.destructive-action:disabled{
 	background-color: @insensitive_bg_color;
 	color: @insensitive_fg_color;
-	border-color: @borders;
+	border-color: @borders_t;
 }
 
 /* OSD BUTTONS */
-button.osd {
-	border-radius: 9999px;
-	background-color: @button_color;
-	color: @fg_color;
-}
+button.osd,.osd button {background-color: @base_color;	color: @fg_color;}
 
-.osd button{background-color: @button_color; color: @fg_color;}
+button.osd {border-radius: 9999px;}
+
+.osd button:hover,
+button.osd:hover
+{background-color: mix(@base_color,currentcolor,0.1);}
+.osd button:active,
+button.osd:active,
+.osd button:checked,
+button.osd:checked
+{background-color: mix(@base_color,currentcolor,0.2);}
 
 button.osd.image-button {
 	padding: 0;
@@ -1184,7 +1181,7 @@ combobox button:last-child:not(:only-child):disabled,
 combobox entry:first-child:focus{}
 
 /* Treeview Button */
-treeview button{border-width: 0 1px 1px 0; border-radius: 0; box-shadow: none; margin: 0; background-color: transparent;}
+treeview button{border-width: 0 1px 1px 0; border-radius: 0; box-shadow: none; margin: 0; background-color: transparent; border-color: @borders;}
 
 treeview button:last-child{border-right: none;}
 
@@ -1432,7 +1429,7 @@ button:link > label:disabled, button:visited > label:disabled, button:disabled:l
 
 /* Check and Radio Buttons*/
 
-.view.content-view.check:not(list), iconview.content-view.check:not(list), .content-view:not(list) check { border: 1px solid @borders_t; background-color: @base_color; border-radius: 2px; }
+.view.content-view.check:not(list), iconview.content-view.check:not(list), .content-view:not(list) check { border: 1px solid @borders_t; background-color: @base_color; border-radius: 3px; background-clip: border-box; }
 
 .view.content-view.check:not(list):checked, iconview.content-view.check:not(list):checked, .content-view:not(list) check:checked{
 -gtk-icon-source: -gtk-icontheme('object-select-symbolic');
@@ -1454,7 +1451,7 @@ radiobutton.text-button label:not(:only-child) {
 	margin: 0 4px;
 }
 
-check{border-radius: 2px;}
+check{border-radius: 3px;}
 radio{border-radius: 9999px;}
 
 menuitem check,menuitem radio,
@@ -1571,7 +1568,7 @@ switch {
 	box-shadow:	none;
 	background-image: none;
 	border-radius: 9999px;
-	background-color: @wbg;
+	background-color: @widget_color;
 	background-clip: border-box;
 	font-size: 0;
 }
@@ -1598,15 +1595,14 @@ switch slider {
 	border-radius: 9999px;
 	-gtk-outline-radius: 9999px;
 	background-color: @base_color;
-	background-clip: padding-box;
+	background-clip: border-box;
 	border: none;
-	border-color: @borders_t;
 	box-shadow: 0 0 0 1px @borders_t;
 	background-image: none;
 }
 
 switch:disabled slider {
-	background-color: @insensitive_bg_color;
+	background-color: alpha(@base_color,0.5);
 	background-image: none;
 }
 
@@ -1618,17 +1614,17 @@ progressbar progress {
 	background-color: @selected_bg_color;
 	border-radius: 9999px;
 	color: @selected_fg_color;
-	box-shadow:inset 0 0 0 1px @borders_t;
+	box-shadow: inset 0 0 0 1px @borders_t;
 }
 
 progressbar trough {
 	border-radius: 9999px;
-	background-color: @wbg;
-	box-shadow:inset 0 0 0 1px @borders_t;
+	background-color: @widget_color;
+	box-shadow: inset 0 0 0 1px @borders_t;
 }
 
 treeview.view.progressbar {
-	box-shadow: inset 0 0 0 9999px @selected_bg_color,inset 0 0 0 1px @borders_t;
+	box-shadow: inset 0 0 0 9999px @selected_bg_color	, inset 0 0 0 1px @borders_t;
 	background-color: transparent;
 	background-image: none;
 }
@@ -1637,7 +1633,7 @@ treeview.view.progressbar:selected:focus, treeview.view.progressbar:selected,tre
 treeview.view.progressbar:selected:focus:backdrop, treeview.view.progressbar:selected:backdrop { color: @selected_fg_color; }
 
 treeview.view.trough {
-	box-shadow: inset 0 0 0 9999px @wbg,inset 0 0 0 1px @borders_t;
+	box-shadow: inset 0 0 0 9999px @widget_color, inset 0 0 0 1px @borders_t;
 	background-color: transparent;
 	background-image: none;
 }
@@ -1649,7 +1645,7 @@ levelbar block {
 	min-width: 32px;
 	min-height: 6px;
 	border-radius: 9999px;
-	box-shadow:inset 0 0 0 1px @borders_t;
+	box-shadow: inset 0 0 0 1px @borders_t;
 }
 
 levelbar.vertical block {
@@ -1687,7 +1683,7 @@ levelbar block.full {
 }
 
 levelbar block.empty {
-	background-color: @wbg;
+	background-color: @widget_color;
 }
 
 /****************
@@ -1698,8 +1694,8 @@ scale { padding: 8px;}
 
 scale trough {
 	border-radius: 9999px;
-	background-color: @wbg;
-	box-shadow:inset 0 0 0 1px @borders_t;
+	background-color: @widget_color;
+	box-shadow: inset 0 0 0 1px @borders_t;
 }
 
 scale trough:disabled {}
@@ -1707,7 +1703,7 @@ scale trough:disabled {}
 scale highlight {
 	border-radius: 9999px;
 	background-color: @selected_bg_color;
-	box-shadow:inset 0 0 0 1px @borders_t;
+	box-shadow: inset 0 0 0 1px @borders_t;
 }
 
 scale highlight:disabled {	background-color: alpha(@selected_bg_color, 0.5);}
@@ -1878,12 +1874,13 @@ menubar,
 .menubar {
 	-GtkWidget-window-dragging: true;
 	padding: 0px;
-	color: @fg_color;
-	background-color: @bg_color;
+	color: @textColorPrimary;
+	background-color: @colorPrimary;
+	border-bottom: 1px solid @borders;
 }
 
 menubar:backdrop,
-.menubar:backdrop {}
+.menubar:backdrop {color: alpha(@textColorPrimary,0.5);}
 
 menubar > menuitem,
 .menubar > menuitem {
@@ -1907,7 +1904,7 @@ menu menuitem:hover,
 .menu menuitem:hover,
 
 menuitem.button.flat:hover,popover button.menuitem:hover, popover .menuitem:hover, popover .menuitem.activatable:hover,
-modelbutton.flat:hover , .budgie-popover button.flat:hover{	background-color: alpha(currentcolor,0.1);	color: @fg_color;}
+modelbutton.flat:hover , .budgie-popover button.flat:hover{	background-color: alpha(@fg_color,0.1);	color: @fg_color;}
 
 menubar > menuitem:disabled,
 .menubar > menuitem:disabled {
@@ -1915,7 +1912,7 @@ menubar > menuitem:disabled,
 	border-color: transparent;
 }
 
-.background.popup { background-color: transparent;	border-radius: 2px;}
+.background.popup { background-color: transparent;	border-radius: 4.0px;}
 
 menu,
 .menu {
@@ -1923,13 +1920,11 @@ menu,
 	background-color: @menu_color;
 	border: 1px solid @deco;
 	box-shadow: none;
+	border-radius: 4.0px;
 }
 
 .csd menu, .csd
-.menu {
-	padding: 4px 1px;
-	border-radius: 2px;
-}
+.menu {	padding: 4px 0px; }
 
 menu separator,
 .csd menu separator,
@@ -2022,7 +2017,7 @@ modelbutton.flat {
 	min-width: 150px;
 	padding: 6px 15px;
 	outline-offset: -2px;
-	border-radius: 0px;
+	border-radius: 4.0px;
 	border: none;
 	outline-color: transparent;
 }
@@ -2361,7 +2356,7 @@ XfdesktopIconView.view:active , XfdesktopIconView.view .label:active{background:
 /* Budgie Panel */
 .budgie-panel label, .budgie-panel image{color: @panel_fg;}
 
-.budgie-panel{background-color: alpha(@panel_bg,0.9);	transition: all 600ms ease-out; }
+.budgie-panel{background-color: alpha(@panel_bg,0.7);	transition: all 600ms ease-out; }
 
 .budgie-panel.transparent {background-color: transparent; box-shadow: none; text-shadow: 1px 1px alpha(@panel_bg,0.5); -gtk-icon-shadow: 1px 1px alpha(@panel_bg,0.5); }
 
@@ -2385,7 +2380,7 @@ XfdesktopIconView.view:active , XfdesktopIconView.view .label:active{background:
 	border-radius: 4.0px;
 	background-image: none;
 	box-shadow: 0 0 0 1px @borders_t;
-	background-color: alpha(black,0.9);
+	background-color: alpha(@base_color,0.9);
 	text-shadow: none;
 	-gtk-icon-shadow: none;
 	}
@@ -2595,7 +2590,7 @@ button.active.btn_round.flat{ background-color: alpha(currentcolor,0.2);}
 .linked.horizontal.format-bar{background-image: image(@colorPrimary);}
 .linked.horizontal.format-bar:backdrop{background-image: image(@colorPrimaryBackdrop);}
 
-.storage-bar .fill-block{padding: 4px; background-color: @wbg;}
+.storage-bar .fill-block{padding: 4px; background-color: @widget_color;}
 .storage-bar .fill-block.empty-block{background-color: alpha(@fg_color,0.3);}
 .storage-bar .fill-block.app{background-color: @success_color;}
 .storage-bar .fill-block.audio{background-color: @warning_color;}
