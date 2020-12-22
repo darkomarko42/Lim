@@ -821,7 +821,7 @@ toolbar {
 	border-color: @borders;
 	border-radius: 0;
 	box-shadow: none;
-	border-width: 0px 0 1px 0;
+	border-width: 1px 0 1px 0;
 }
 
 actionbar {
@@ -1876,7 +1876,6 @@ menubar,
 	padding: 0px;
 	color: @textColorPrimary;
 	background-color: @colorPrimary;
-	border-bottom: 1px solid @borders;
 }
 
 menubar:backdrop,

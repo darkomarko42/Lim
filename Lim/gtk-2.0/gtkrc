@@ -233,8 +233,8 @@ engine "murrine"
 
 style "murrine-menubar-item" = "murrine-menu-item"
 {
-	bg[SELECTED] = mix(0.1,@fg_color, @bg_color)
-	bg[PRELIGHT] = mix(0.1,@fg_color, @bg_color)
+	bg[SELECTED] = mix(0.1,@fg_color, @base_color)
+	bg[PRELIGHT] = mix(0.1,@fg_color, @base_color)
 	fg[SELECTED] = @fg_color
 	fg[PRELIGHT] = @fg_color
 

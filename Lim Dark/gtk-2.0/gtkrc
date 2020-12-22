@@ -48,7 +48,7 @@ style "murrine-default"
   	#GtkScrolledWindow::scrollbar-spacing	= 1 # This sets the spacing between scrollbars.
 
 #	GtkToolbar     :: shadow-type		= GTK_SHADOW_NONE
-    GtkMenuBar     :: shadow-type          = GTK_SHADOW_NONE
+#   GtkMenuBar     :: shadow-type          = GTK_SHADOW_NONE
 
 	GtkWidget      :: link-color           = @selected_bg_color
 	GtkWidget      :: visited-link-color   = shade (0.2, @selected_bg_color)
@@ -186,7 +186,7 @@ style "murrine-tasklist" = "murrine-wide"
 style "murrine-menubar"
 {
 
-	bg[NORMAL] = @bg_color
+	bg[NORMAL] = @base_color
 
 engine "murrine" {
 		contrast                = 1.0
@@ -201,7 +201,7 @@ style "murrine-menu" = "murrine-wider"
   xthickness = 0
   ythickness = 2
 
-	bg[NORMAL] = @bg_color
+	bg[NORMAL] = @base_color
 
 
 	engine "murrine" {
@@ -216,9 +216,9 @@ style "murrine-menu-item"
   xthickness = 0
   ythickness = 4
 
-	bg[PRELIGHT] = mix(0.1,@fg_color, @bg_color)
+	bg[PRELIGHT] = mix(0.1,@fg_color, @base_color)
 	fg[PRELIGHT] = @fg_color
-	bg[SELECTED] = mix(0.1,@fg_color, @bg_color)
+	bg[SELECTED] = mix(0.1,@fg_color, @base_color)
 	fg[SELECTED] = @fg_color
 
 	text[NORMAL]	= @fg_color
@@ -234,8 +234,8 @@ engine "murrine"
 
 style "murrine-menubar-item" = "murrine-menu-item"
 {
-	bg[SELECTED] = mix(0.1,@fg_color, @bg_color)
-	bg[PRELIGHT] = mix(0.1,@fg_color, @bg_color)
+	bg[SELECTED] = mix(0.1,@fg_color, @base_color)
+	bg[PRELIGHT] = mix(0.1,@fg_color, @base_color)
 	fg[SELECTED] = @fg_color
 	fg[PRELIGHT] = @fg_color
 
