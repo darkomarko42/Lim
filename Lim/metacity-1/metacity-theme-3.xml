@@ -18,11 +18,11 @@
 <constant name="C_title_unfocused" value="gtk:custom(wm_unfocused_title,gtk:fg[NORMAL])" />
 
 <constant name="C_icons_fg_focused" value="gtk:custom(wm_title,gtk:fg[NORMAL])" />
-<constant name="C_icons_bg_focused_prelight" value="gtk:custom(m_button,gtk:bg[NORMAL])" />
+<constant name="C_icons_bg_focused_prelight" value="gtk:custom(m_button_hover,gtk:bg[NORMAL])" />
 <constant name="C_icons_bg_focused_pressed" value="gtk:custom(m_button_active,gtk:bg[NORMAL])" />
 
 <constant name="C_icons_fg_c_focused" value="gtk:custom(wm_title,gtk:fg[NORMAL])" />
-<constant name="C_icons_bg_c_focused_prelight" value="gtk:custom(m_button,gtk:bg[NORMAL])" />
+<constant name="C_icons_bg_c_focused_prelight" value="gtk:custom(m_button_hover,gtk:bg[NORMAL])" />
 <constant name="C_icons_bg_c_focused_pressed" value="gtk:custom(m_button_active,gtk:bg[NORMAL])" />
 
 <constant name="C_icons_fg_unfocused" value="gtk:custom(wm_unfocused_title,gtk:fg[NORMAL])" />

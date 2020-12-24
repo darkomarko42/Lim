@@ -34,12 +34,12 @@
 @define-color text_view_bg @base_color;
 @define-color content_view_bg @base_color;
 
-@define-color insensitive_bg_color alpha(@widget_color,0.3);
+@define-color insensitive_bg_color alpha(@widget_color,0.2);
 @define-color insensitive_fg_color alpha(@fg_color,0.5);
 @define-color insensitive_base_color @base_color;
 @define-color unfocused_insensitive_color @insensitive_fg_color;
 
-@define-color highlight alpha(@selected_fg_color,0.5);
+@define-color highlight alpha(white,0.5);
 @define-color button_shadow alpha(@shadow,0.2);
 @define-color menu_shadow alpha(@shadow,0.5);
 @define-color shadow alpha(black,0.3);
@@ -73,7 +73,7 @@
 @define-color metacity_theme @colorPrimary;
 @define-color wm_title @textColorPrimary;
 @define-color wm_unfocused_title alpha(@textColorPrimary,0.5);
-@define-color m_button	alpha(@textColorPrimary,0.1);
+@define-color m_button_hover	transparent;
 @define-color m_button_active	alpha(@textColorPrimary,0.2);
 @define-color m_border	@borders;
 @define-color colorAccent @selected_bg_color;
@@ -683,9 +683,9 @@ treeview.view:selected,
 treeview.view:selected:focus,
 row.activatable:hover:selected,
 treeview.view:hover:selected,
-treeview.view:hover:selected:focus{ background-image: image(alpha(@fg_color,0.15)); color: @fg_color;}
+treeview.view:hover:selected:focus{ background-image: image(alpha(@fg_color,0.1)); color: @fg_color;}
 
-row.activatable:hover,treeview.view:hover{background-image: image(alpha(@fg_color,0.1)); }
+row.activatable:hover,treeview.view:hover{}
 
 .sidebar .frame { border-width: 1px 0 0 0;}
 
@@ -755,13 +755,11 @@ notebook > header.right {
 	border-left: 1px solid @borders;
 }
 
-notebook tab{padding: 4px;}
+notebook tab{padding: 4px; color: @insensitive_fg_color;}
 
 notebook header button {min-width: 20px;}
 
-notebook tab > image { color: @text_color; }
-
-notebook tab:hover{background-color: alpha(@fg_color,0.1);}
+notebook tab:hover{}
 
 notebook tab:checked {
 	background-image: none;
@@ -770,7 +768,8 @@ notebook tab:checked {
 	border-radius: 0;
 	border-style: none;
 	box-shadow: none;
-	color: @text_color;
+	color: @selected_bg_color;
+	font-weight: bold;
 }
 
 notebook > header.top > tabs > tab:checked {box-shadow: inset 0 -2px @selected_bg_color;}
@@ -778,9 +777,8 @@ notebook > header.bottom > tabs > tab:checked {	box-shadow: inset 0 2px @selecte
 notebook > header.left > tabs > tab:checked {box-shadow: inset -2px 0 @selected_bg_color;}
 notebook > header.right > tabs > tab:checked {box-shadow: inset 2px 0 @selected_bg_color;}
 
-notebook tab label {	color: @insensitive_fg_color;	padding: 3px 6px;}
+notebook tab label { padding: 3px 6px;}
 
-notebook tab:checked label,
 notebook .active-page,
 notebook tab .active-page label {	color: @selected_bg_color; font-weight: bold;}
 
@@ -802,10 +800,10 @@ infobar.question > label, infobar.question, infobar.question button {color: mix(
 infobar.error > label, infobar.error, infobar.error button {color: mix(@error_color,@fg_color,0.2);}
 infobar label:disabled{color: alpha(currentcolor,0.5);}
 
-infobar button:not(.flat){background-color: alpha(currentcolor,0.1); }
-infobar button:not(.flat):hover{background-color: alpha(currentcolor,0.2); }
-infobar button:not(.flat):checked,infobar button:not(.flat):active{background-color: alpha(currentcolor,0.3); }
-infobar button:disabled{background-color: transparent; }
+infobar button:not(.flat),
+infobar button:not(.flat):hover,
+infobar button:not(.flat):checked,infobar button:not(.flat):active,
+infobar button:disabled{border-color: currentcolor; }
 
 /************
  * Toolbars *
@@ -885,7 +883,7 @@ entry.warning image {
 
 entry.warning selection, entry.warning selection:focus {
 	background-color: @warning_color;
-	color: @selected_fg_color;
+	color: white;
 }
 
 entry.error {
@@ -900,7 +898,7 @@ entry.error image {
 
 entry.error selection, entry.error selection:focus {
 	background-color: @error_color;
-	color: @selected_fg_color;
+	color: white;
 }
 
 entry.search-missing {
@@ -914,7 +912,7 @@ entry.search-missing image {
 
 entry.search-missing selection, entry.search-missing selection:focus {
 	background-color: @error_color;
-	color: @selected_fg_color;
+	color: white;
 }
 
 entry:drop(active):focus, entry:drop(active) {
@@ -965,7 +963,8 @@ button{
 	padding: 4px;
 	}
 	
-button,.titlebar button.text-button:not(.suggested-action):not(.destructive-action),
+button,
+.titlebar button.text-button:not(.suggested-action):not(.destructive-action),
 .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
 dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-action),
 dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio),
@@ -994,46 +993,41 @@ dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):
 .titlebar button.text-button:not(.suggested-action):not(.destructive-action):hover,
 .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
 .fullscreen headerbar button:hover
-{	background-color: mix(@alt_button,@textColorPrimary,0.1); }
+,
 	
 button:hover,
 dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-action):hover,
 dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
 .inline-toolbar button.flat:hover
-{	background-color: mix(@button_color,@fg_color,0.1); }
+{}
 
-/* Active State */
+/* Active and Checked State */
 .titlebar button.text-button:not(.suggested-action):not(.destructive-action):active,
 .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
 .fullscreen headerbar button:active
-{	background-color: mix(@alt_button,@textColorPrimary,0.2); }
+,
+.titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked,
+.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
+.fullscreen headerbar button:checked,
+.titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked:disabled
+{	background-color: mix(@alt_button,@textColorPrimary,0.15); }
 	
 button:active,
 dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-action):active,
 dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):active,
 .inline-toolbar button.flat:active
-{	background-color: mix(@button_color,@fg_color,0.2); }
-
-/* Checked State */
-.titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked,
-.titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
-.fullscreen headerbar button:checked
-{	background-color: @scrollbar_color; border-color: transparent; background-clip: border-box; color: white; }
-	
+,
 button:checked,
 dialog .titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked,
 dialog .titlebar .linked button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):checked,
-.inline-toolbar button.flat:checked
-
-{	background-color: @scrollbar_color; border-color: transparent; background-clip: border-box; color: white; }
-
-button:checked:disabled,.titlebar button.text-button:not(.suggested-action):not(.destructive-action):checked:disabled{background-color: alpha(@scrollbar_color,0.5);}
+.inline-toolbar button.flat:checked,
+button:checked:disabled
+{	background-color: mix(@button_color,@fg_color,0.15); }
 
 /* Disabled State */
 button:disabled,
 .inline-toolbar button.flat:disabled,
-entry:disabled,
-spinbutton:not(.vertical):disabled
+entry:disabled
 {	background-color: @insensitive_bg_color; color: @insensitive_fg_color; }
 
 .titlebar button.text-button:not(.suggested-action):not(.destructive-action):disabled,
@@ -1052,7 +1046,8 @@ headerbar viewswitcher button:disabled,
 .titlebar:backdrop label,
 .titlebar:backdrop image,
 .titlebar label:disabled,
-.titlebar image:disabled
+.titlebar image:disabled,
+spinbutton.horizontal button:disabled
 {color:alpha(currentcolor,0.5);}
 
 label:disabled,image:disabled,notebook arrow:disabled,spinbutton:disabled{ color: @insensitive_fg_color;}
@@ -1087,7 +1082,7 @@ dialog .titlebutton:hover,
 dialog .titlebar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.text-button):not(.radio):hover,
 spinbutton.horizontal button:hover,
 viewswitcher button.radio:hover
-{background-color: alpha(currentcolor,0.1);}
+{}
 
 /* Active State */
 button.flat:active,
@@ -1113,7 +1108,7 @@ viewswitcher button.radio:checked
 .titlebar.default-decoration { padding: 2px 4px;}
 .titlebar button.sources-button.flat{padding: 2px;}
 
-.titlebutton{border-radius: 9999px; background-clip: padding-box;}
+.titlebutton,.titlebutton:hover,.titlebutton:active,.titlebutton:checked{border-radius: 9999px; background-clip: padding-box;}
 .titlebutton.close{box-shadow:inset 0 0 0 9999px alpha(@fg_color,0.15);}
 
 /* Suggested and Destructive Action Buttons*/
@@ -1124,30 +1119,28 @@ button.suggested-action{
 	background-clip: border-box;
 }
 
-button.suggested-action:hover{background-color: mix(@selected_bg_color,@fg_color,0.1);}
-button.suggested-action:active{background-color: mix(@selected_bg_color,@fg_color,0.2);}
+button.suggested-action:hover{}
+button.suggested-action:active,
 button.suggested-action:checked{background-color: mix(@selected_bg_color,@fg_color,0.3);}
 
 button.suggested-action:disabled{
 	background-color: @insensitive_bg_color;
 	color: @insensitive_fg_color;
-	border-color: @borders_t;
 }
 
 button.destructive-action{
 	background-color: @error_color;
-	color: @selected_fg_color;
+	color: white;
 	background-clip: border-box;
 }
 
-button.destructive-action:hover{background-color: mix(@error_color,@fg_color,0.1);}
-button.destructive-action:active{background-color: mix(@error_color,@fg_color,0.2);}
+button.destructive-action:hover{}
+button.destructive-action:active,
 button.destructive-action:checked{background-color: mix(@error_color,@fg_color,0.3);}
 
 button.destructive-action:disabled{
 	background-color: @insensitive_bg_color;
 	color: @insensitive_fg_color;
-	border-color: @borders_t;
 }
 
 /* OSD BUTTONS */
@@ -1430,13 +1423,9 @@ button:link > label:disabled, button:visited > label:disabled, button:disabled:l
 
 /* Check and Radio Buttons*/
 
-.view.content-view.check:not(list), iconview.content-view.check:not(list), .content-view:not(list) check { border: 1px solid @borders_t; background-color: @base_color; border-radius: 3px; background-clip: border-box; }
-
-.view.content-view.check:not(list):checked, iconview.content-view.check:not(list):checked, .content-view:not(list) check:checked{
--gtk-icon-source: -gtk-icontheme('object-select-symbolic');
-	background-color: @selected_bg_color;
-	color: @selected_fg_color;
-}
+.view.content-view.check:not(list):checked,
+iconview.content-view.check:not(list):checked,
+.content-view:not(list) check:checked{-gtk-icon-source: -gtk-icontheme('object-select-symbolic');}
 
 window	flowbox grid overlay check{ min-height: 36px; min-width: 36px;}
 
@@ -1452,7 +1441,7 @@ radiobutton.text-button label:not(:only-child) {
 	margin: 0 4px;
 }
 
-check{border-radius: 3px;}
+check,.view.content-view.check:not(list),iconview.content-view.check:not(list),.content-view:not(list) check{border-radius: 3px;}
 radio{border-radius: 9999px;}
 
 menuitem check,menuitem radio,
@@ -1471,7 +1460,10 @@ popover check:disabled:indeterminate,popover radio:disabled:indeterminate{backgr
 check,
 radio,
 treeview.view check:selected ,
-treeview.view radio:selected {
+treeview.view radio:selected,
+.view.content-view.check:not(list),
+iconview.content-view.check:not(list),
+.content-view:not(list) check {
 	background-clip: padding-box;
 	min-height: 14px;
 	min-width: 14px;
@@ -1492,7 +1484,10 @@ radio:checked,
 radio:indeterminate,
 treeview.view radio:disabled:checked:selected,
 treeview.view check:checked:selected ,
-treeview.view radio:checked:selected {
+treeview.view radio:checked:selected,
+.view.content-view.check:not(list):checked,
+iconview.content-view.check:not(list):checked,
+.content-view:not(list) check:checked {
 	background-clip: border-box;
 	background-color: @selected_bg_color;
 	color: @selected_fg_color;
@@ -2168,7 +2163,7 @@ toolbar.osd {box-shadow: 0 1px 2px @menu_shadow; border: 1px solid @borders_t;}
 	padding: 2px;
 	margin: 4px;
 	background-color: black;
-	color: @selected_fg_color;
+	color: white;
 	border-radius:	4.0px;
 }
 
@@ -2246,6 +2241,7 @@ dzlmenubuttonsection:first-child separator {border: none;}
 	border: none;
 	margin: 2px;
 	padding: 2px;
+	background: none;
 }
 
 /* Tweaks */
@@ -2410,7 +2406,7 @@ box-shadow: inset 0 -1px mix(@panel_bg,@panel_fg,0.3), inset 0 1px mix(@panel_bg
 
 .budgie-panel button:not(.launcher):not(.flat){background-color: @alt_button; color: @panel_fg;}
 
-.budgie-panel button:not(.launcher):not(.flat):hover,.budgie-panel button.launcher.flat:hover{background-image: image(alpha(@panel_fg,0.1));}
+.budgie-panel button:not(.launcher):not(.flat):hover,.budgie-panel button.launcher.flat:hover,
 .budgie-panel button:not(.launcher):not(.flat):active,.budgie-panel button.launcher.flat:active,
 .budgie-panel button:not(.launcher):not(.flat):checked,.budgie-panel button.launcher.flat:checked{}
 
