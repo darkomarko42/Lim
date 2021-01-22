@@ -7,7 +7,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07, custom)"
    sodipodi:docname="title-inactive.svg"
    id="svg6"
    version="1.1"
@@ -35,11 +35,11 @@
      inkscape:window-y="0"
      inkscape:window-x="0"
      inkscape:cy="13.754855"
-     inkscape:cx="-7.9199546"
+     inkscape:cx="-14.09351"
      inkscape:zoom="18.627844"
      showgrid="false"
      id="namedview8"
-     inkscape:window-height="1001"
+     inkscape:window-height="1007"
      inkscape:window-width="1920"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0"
@@ -51,12 +51,12 @@
      pagecolor="#ffffff" />
   <rect
      fill="#E0E0E0"
-     style="fill:#4c4c4c;fill-opacity:1"
+     style="fill:#292929;fill-opacity:1"
      id="rect2"
      height="32"
      width="2" />
   <rect
-     style="fill:#fdfdfd;fill-opacity:1;opacity:0.2"
+     style="fill:#000000;fill-opacity:1;opacity:0.5"
      fill="#FFFFFF"
      fill-opacity="0.4"
      id="rect4"

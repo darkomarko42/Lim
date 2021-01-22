@@ -13,7 +13,7 @@
    version="1.1"
    id="svg138"
    sodipodi:docname="stick-inactive.svg"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07, custom)">
   <metadata
      id="metadata144">
     <rdf:RDF>
@@ -37,11 +37,11 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1001"
+     inkscape:window-height="1007"
      id="namedview140"
      showgrid="false"
      inkscape:zoom="7.375"
-     inkscape:cx="-35.192701"
+     inkscape:cx="-50.785922"
      inkscape:cy="20.776867"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -53,7 +53,7 @@
      height="32"
      fill="#D6D6D6"
      id="rect128"
-     style="fill:#4c4c4c;fill-opacity:1" />
+     style="fill:#292929;fill-opacity:1" />
   <g
      style="opacity:0.5;fill:#ffffff;fill-opacity:1"
      fill="#000000"
@@ -77,7 +77,7 @@
      fill="#FFFFFF"
      fill-opacity="0.4"
      id="rect166-5"
-     style="opacity:0.2;fill:#ffffff;fill-opacity:1"
+     style="opacity:0.5;fill:#000000;fill-opacity:1"
      x="0"
      y="0" />
 </svg>

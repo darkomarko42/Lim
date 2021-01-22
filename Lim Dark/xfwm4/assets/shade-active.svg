@@ -13,7 +13,7 @@
    version="1.1"
    id="svg66"
    sodipodi:docname="shade-active.svg"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07, custom)">
   <metadata
      id="metadata72">
     <rdf:RDF>
@@ -38,11 +38,11 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1001"
+     inkscape:window-height="1007"
      id="namedview68"
      showgrid="false"
      inkscape:zoom="7.375"
-     inkscape:cx="-8.1446722"
+     inkscape:cx="-23.737894"
      inkscape:cy="38.05491"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -54,9 +54,9 @@
      height="32"
      fill="#D6D6D6"
      id="rect56"
-     style="fill:#4c4c4c;fill-opacity:1" />
+     style="fill:#292929;fill-opacity:1" />
   <g
-     style="opacity:1;fill:#ffffff;fill-opacity:1"
+     style="opacity:1;fill:#fefefe;fill-opacity:1"
      fill="#000000"
      opacity="0.38"
      id="g64">
@@ -66,11 +66,11 @@
        r="12"
        opacity="0"
        id="circle60"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#fefefe;fill-opacity:1" />
     <path
        d="m10 18 1.41 1.41 4.59-4.59 4.59 4.59 1.41-1.41-6-6z"
        id="path62"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#fefefe;fill-opacity:1" />
   </g>
   <rect
      width="32"
@@ -78,7 +78,7 @@
      fill="#FFFFFF"
      fill-opacity="0.4"
      id="rect166"
-     style="opacity:0.2;fill:#ffffff;fill-opacity:1"
+     style="opacity:0.5;fill:#000000;fill-opacity:1"
      x="0"
      y="0" />
 </svg>

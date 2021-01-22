@@ -13,7 +13,7 @@
    version="1.1"
    id="svg4"
    sodipodi:docname="close.svg"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07, custom)">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -36,24 +36,18 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1918"
-     inkscape:window-height="997"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="27.75"
-     inkscape:cx="10.738738"
+     inkscape:cx="8.5045035"
      inkscape:cy="12"
      inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg4"
      inkscape:document-rotation="0" />
-  <circle
-     style="opacity:0.1;fill:#808080;fill-opacity:1;stroke-width:1.80199"
-     id="path835"
-     cx="12"
-     cy="12"
-     r="12" />
   <path
      d="m9.41 8l-1.41 1.41 2.59 2.59-2.59 2.59 1.41 1.41 2.59-2.59 2.59 2.59 1.41-1.41-2.59-2.59 2.59-2.59-1.41-1.41-2.59 2.59-2.59-2.59z"
      fill="#808080"
