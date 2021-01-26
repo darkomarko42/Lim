@@ -7,6 +7,6 @@ Encoding=UTF-8
 [X-GNOME-Metatheme]
 GtkTheme=Lim
 MetacityTheme=Lim
-IconTheme=Luna
+IconTheme=Luna-Light
 CursorTheme=Luna-Light
 CursorSize=24

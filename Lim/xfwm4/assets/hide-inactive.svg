@@ -42,7 +42,7 @@
      id="namedview14"
      showgrid="false"
      inkscape:zoom="7.375"
-     inkscape:cx="-34.211718"
+     inkscape:cx="-39.906634"
      inkscape:cy="45.234424"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -54,23 +54,23 @@
      height="32"
      fill="#E0E0E0"
      id="rect2"
-     style="fill:#6b49e6;fill-opacity:1" />
+     style="fill:#dbdbdb;fill-opacity:1" />
   <g
      fill="#000000"
      opacity="0.6"
      id="g10"
-     style="opacity:0.5;fill:#ffffff;fill-opacity:1">
+     style="opacity:0.5;fill:#000000;fill-opacity:1">
     <circle
        cx="16"
        cy="16"
        r="12"
        opacity="0"
        id="circle6"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#000000;fill-opacity:1" />
     <path
        d="m12 18h8v2h-8z"
        id="path8"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#000000;fill-opacity:1" />
   </g>
   <rect
      width="32"

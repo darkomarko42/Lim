@@ -35,7 +35,7 @@
      inkscape:window-y="0"
      inkscape:window-x="0"
      inkscape:cy="26.242978"
-     inkscape:cx="-33.03259"
+     inkscape:cx="-38.727506"
      inkscape:zoom="7.375"
      showgrid="false"
      id="namedview14"
@@ -50,13 +50,13 @@
      bordercolor="#666666"
      pagecolor="#ffffff" />
   <rect
-     style="fill:#6b49e6;fill-opacity:1"
+     style="fill:#dbdbdb;fill-opacity:1"
      id="rect2"
      fill="#E0E0E0"
      height="32"
      width="32" />
   <g
-     style="opacity:1;fill:#ffffff;fill-opacity:1"
+     style="opacity:1;fill:#000000;fill-opacity:1"
      id="g10"
      opacity="0.6"
      fill="#000000">
@@ -66,11 +66,11 @@
        r="12"
        cy="16"
        cx="16"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#000000;fill-opacity:1" />
     <path
        id="path8"
        d="m12 12v8h8v-8zm2 2h4v4h-4z"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#000000;fill-opacity:1" />
   </g>
   <rect
      width="32"

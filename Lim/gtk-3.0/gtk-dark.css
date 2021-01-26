@@ -4,17 +4,17 @@
 
 @define-color menu_color @button_color;
 @define-color button_color @base_color;
-@define-color alt_button shade(@colorPrimary,1.2);
+@define-color alt_button @button_color;
 @define-color notibg @base_color;
 @define-color widget_color alpha(@fg_color,0.2);
 @define-color invertbg alpha(black,0.08);
-@define-color panel_bg shade(@colorPrimary,0.9);
-@define-color panel_fg @selected_fg_color;
+@define-color panel_bg black;
+@define-color panel_fg white;
 @define-color scrollbar_color mix(@bg_color,@fg_color,0.5);
 
-@define-color colorPrimary shade(@selected_bg_color,0.9);
+@define-color colorPrimary shade(@sidebar_color,0.9);
 @define-color colorPrimaryBackdrop @colorPrimary;
-@define-color textColorPrimary @selected_fg_color;
+@define-color textColorPrimary @fg_color;
 @define-color textColorPrimaryShadow alpha(white,0.5);
 @define-color sidebar_color shade(@bg_color,0.9);
 
@@ -42,7 +42,7 @@
 @define-color highlight alpha(white,0.5);
 @define-color text_shadow_color alpha(@panel_bg,0.5);
 @define-color button_shadow alpha(@shadow,0.2);
-@define-color menu_shadow alpha(@shadow,0.5);
+@define-color menu_shadow alpha(@shadow,0.3);
 @define-color shadow alpha(black,0.5);
 @define-color borders shade(@bg_color,0.6);
 @define-color border_color @borders;
@@ -677,7 +677,12 @@ treeview.view.expander:checked {
 	color: @selected_fg_color;
 }
 
-treeview.view:selected.chromium,treeview.view:selected:focus.chromium,XfdesktopIconView.view:active{background-color: @selected_bg_color; color: @selected_fg_color;}
+treeview.view:selected.chromium,
+treeview.view:selected:focus.chromium,
+XfdesktopIconView.view:active,
+#MozillaGtkWidget.background > widget > scrolledwindow > textview text:selected,
+#MozillaGtkWidget.background > widget > scrolledwindow > textview text:selected:focus,
+#MozillaGtkWidget.background > widget > scrolledwindow > textview text selection{background-color: @selected_bg_color; color: @selected_fg_color;}
 
 /**************
  * Separators *
@@ -695,8 +700,7 @@ frame > border,
 frame.flat > border,.documents-scrolledwin.frame,.documents-scrolledwin.frame frame.content-view > border, frame > border.flat,
 .frame.flat ,.geary-accounts-editor-pane .frame,.standard-view {	border-style: none;}
 
-separator.horizontal{ border-top: 1px solid @borders;}
-separator.vertical{ border-right: 1px solid @borders;}
+separator{background-color: @borders; min-width: 1px; min-height: 1px; }
 
 scrolledwindow viewport.frame , statusbar frame{
 	border-style: none;
@@ -780,23 +784,38 @@ paned.vertical > separator.wide { margin: 0; padding: 0; background-repeat: repe
 
 stacksidebar.sidebar:dir(ltr) list,
 stacksidebar.sidebar.left list,
-stacksidebar.sidebar.left:dir(rtl) list, .sidebar:dir(ltr), .sidebar.left, .sidebar.left:dir(rtl) {
+stacksidebar.sidebar.left:dir(rtl) list,
+.sidebar:dir(ltr),
+.sidebar.left,
+.sidebar.left:dir(rtl) {
 	border-right: 1px solid @borders;
 	border-left-style: none;
+	min-width: 0;
 }
 
 stacksidebar.sidebar:dir(rtl) list,
-stacksidebar.sidebar.right list, .sidebar:dir(rtl), .sidebar.right {
+stacksidebar.sidebar.right list,
+.sidebar:dir(rtl),
+.sidebar.right {
 	border-left: 1px solid @borders;
 	border-right-style: none;
+	min-width: 0;
 }
 
 paned .sidebar.left, paned .sidebar.right, paned .sidebar.left:dir(rtl), paned .sidebar:dir(rtl), paned .sidebar:dir(ltr), paned .sidebar {	border-style: none;}
 
 treeview.view.separator {color: @borders;}
 
-.titlebar .right separator{border-color: @deco;}
-.titlebar .left separator{border-color: @deco;}
+ headerbar separator.titlebutton,
+.titlebar:not(headerbar) separator.titlebutton {
+	min-width: 1px;
+	min-height: 12px;
+	background: @deco;
+	border-width: 0 0;
+	border-image: none;
+	margin-left: 4px;
+	margin-right: 4px;
+}
 
 .vertical separator,
 .horizontal separator,
@@ -867,7 +886,7 @@ row.activatable:hover:selected,
 treeview.view:hover:selected,
 treeview.view:hover:selected:focus{ background-image: image(@selected_bg_color); color: @selected_fg_color;}
 
-row.activatable:hover,treeview.view:hover{background-image: image(alpha(@fg_color,0.1)); color: @fg_color;}
+row.activatable:hover,treeview.view:hover{background-image: image(alpha(@selected_bg_color,0.2)); color: @fg_color;}
 
 .sidebar .frame { border-width: 1px 0 0 0;}
 
@@ -958,8 +977,9 @@ infobar {
 	border-style: none;
 	margin: 0 0 1px 0;
 	font-weight: bold;
-	background-color: mix(@bg_color,currentcolor,0.2);
 }
+
+infobar.info,infobar.question,infobar.error,infobar.warning{ background-color: mix(@bg_color,currentcolor,0.2);}
 
 infobar.info > label, infobar.info, infobar.info button {color: mix(@success_color,@fg_color,0.3);}
 infobar.warning > label, infobar.warning, infobar.warning button {color: mix(@warning_color,@fg_color,0.3);}
@@ -1114,6 +1134,8 @@ entry image.right {
 	padding-right: 0;
 	padding-left: 5px;
 }
+
+infobar entry{font-weight: normal;}
 
 /***********
  * Buttons *
@@ -1278,7 +1300,7 @@ viewswitcher button.radio:checked,
 .titlebar button.sources-button.flat{padding: 2px;}
 
 actionbar viewswitcher button,headerbar viewswitcher button { background-color: transparent; background-image: none; border: none; box-shadow: none; border-radius: 0;}
-headerbar viewswitcher button:checked,actionbar viewswitcher button:checked{box-shadow: inset -1px 0 alpha(currentcolor,0.2), inset 1px 0 alpha(currentcolor,0.2);}
+actionbar viewswitcher button:checked{box-shadow: inset 0 2px currentcolor; color: @selected_bg_color;}
 
 /* Suggested and Destructive Action Buttons*/
 
@@ -2080,12 +2102,11 @@ menubar,
 menubar:backdrop,
 .menubar:backdrop {	
 	background-color: @colorPrimaryBackdrop;
-	color: alpha(@textColorPrimary,0.5);
+	color: alpha(@textColorPrimary,0.3);
 	}
 
 menubar > menuitem,
 .menubar > menuitem {
-	transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
 	padding: 6px 8px;
 	border: solid transparent;
 	border-width: 0;
@@ -2132,7 +2153,6 @@ menu separator,
 .menu separator,.csd
 .menu separator {
 	margin: 4px 0px;
-	border-top: 1px solid @borders_t;
 	box-shadow: none;
 }
 
@@ -2835,3 +2855,10 @@ popover .circular image{  color: @colorAccent;}
 
 /* this fix playmymusic separation titlebar buttons */
 .background.csd .mode_button_split.toggle { margin-left: -4px;}
+
+/***********
+ * Firefox *
+ ***********/
+
+window.background:not(.csd) > window > menu,
+window.background:not(.csd) > menu > menu {  border: none; }

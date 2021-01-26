@@ -42,7 +42,7 @@
      id="namedview32"
      showgrid="false"
      inkscape:zoom="7.375"
-     inkscape:cx="-57.651672"
+     inkscape:cx="-63.346588"
      inkscape:cy="18.033439"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -54,9 +54,9 @@
      height="32"
      fill="#D6D6D6"
      id="rect20"
-     style="fill:#6b49e6;fill-opacity:1" />
+     style="fill:#dbdbdb;fill-opacity:1" />
   <g
-     style="opacity:1;fill:#ffffff;fill-opacity:1"
+     style="opacity:1;fill:#000000;fill-opacity:1"
      fill="#000000"
      opacity="0.38"
      id="g28">
@@ -66,13 +66,13 @@
        r="12"
        opacity="0"
        id="circle24"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#000000;fill-opacity:1" />
     <circle
        cx="16"
        cy="16"
        r="2"
        id="circle26"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#000000;fill-opacity:1" />
   </g>
   <rect
      width="32"

@@ -41,7 +41,7 @@
      id="namedview140"
      showgrid="false"
      inkscape:zoom="7.375"
-     inkscape:cx="-47.938464"
+     inkscape:cx="-53.63338"
      inkscape:cy="20.776867"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -53,9 +53,9 @@
      height="32"
      fill="#D6D6D6"
      id="rect128"
-     style="fill:#6b49e6;fill-opacity:1" />
+     style="fill:#dbdbdb;fill-opacity:1" />
   <g
-     style="opacity:0.5;fill:#ffffff;fill-opacity:1"
+     style="opacity:0.5;fill:#000000;fill-opacity:1"
      fill="#000000"
      opacity="0.38"
      id="g136">
@@ -65,11 +65,11 @@
        r="12"
        opacity="0"
        id="circle132"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#000000;fill-opacity:1" />
     <path
        d="m16 10a6 6 0 0 0 -6 6 6 6 0 0 0 6 6 6 6 0 0 0 6 -6 6 6 0 0 0 -6 -6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1 -4 4 4 4 0 0 1 -4 -4 4 4 0 0 1 4 -4z"
        id="path134"
-       style="fill:#ffffff;fill-opacity:1" />
+       style="fill:#000000;fill-opacity:1" />
   </g>
   <rect
      width="32"

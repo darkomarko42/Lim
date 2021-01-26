@@ -189,8 +189,8 @@ style "murrine-tasklist" = "murrine-wide"
 style "murrine-menubar"
 {
 
-	bg[NORMAL] = shade(0.9,@selected_bg_color)
-	fg[NORMAL] = @selected_fg_color
+	bg[NORMAL] = "#DBDBDB"
+	fg[NORMAL] = @fg_color
 engine "murrine" {
 		contrast                = 1.0
 		lightborder_shade = 1.0
@@ -237,10 +237,10 @@ engine "murrine"
 
 style "murrine-menubar-item" = "murrine-menu-item"
 {
-	bg[SELECTED] = mix(0.1,@selected_fg_color, shade(0.9,@selected_bg_color))
-	bg[PRELIGHT] = mix(0.1,@selected_fg_color, shade(0.9,@selected_bg_color))
-	fg[SELECTED] = @selected_fg_color
-	fg[PRELIGHT] = @selected_fg_color
+	bg[SELECTED] = mix(0.1,@fg_color, "#DBDBDB")
+	bg[PRELIGHT] = mix(0.1,@fg_color, "#DBDBDB")
+	fg[SELECTED] = @fg_color
+	fg[PRELIGHT] = @fg_color
 
 }
 
@@ -331,7 +331,7 @@ style "murrine-scale"
 
 	bg[NORMAL]	= @selected_fg_color
 	bg[PRELIGHT]	= @selected_fg_color
-	bg[ACTIVE]	= mix(0.1,@fg_color, @bg_color)
+	bg[ACTIVE]	= mix(0.2,@fg_color, @bg_color)
 	bg[SELECTED]	= @selected_bg_color
 
 

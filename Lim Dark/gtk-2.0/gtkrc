@@ -331,7 +331,7 @@ style "murrine-scale"
 
 	bg[NORMAL]	= @selected_fg_color
 	bg[PRELIGHT]	= @selected_fg_color
-	bg[ACTIVE]	= mix(0.1,@fg_color, @bg_color)
+	bg[ACTIVE]	= mix(0.2,@fg_color, @bg_color)
 	bg[SELECTED]	= @selected_bg_color
 
 
