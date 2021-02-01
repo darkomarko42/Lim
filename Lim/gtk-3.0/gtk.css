@@ -265,6 +265,11 @@ viewswitcherbar actionbar  { padding: 0;}
 /***********
  * Dialogs *
  ***********/
+ 
+messagedialog,
+.prompt {-gtk-icon-style: regular;}
+
+.dialog-action-box{ margin: 8px;}
 
 dialog .titlebar , messagedialog .titlebar{box-shadow: none;}
 
@@ -282,12 +287,21 @@ filechooser #pathbarbox {	border-top: 1px solid @borders;	background-color: @bg_
 
 filechooserbutton:drop(active) {box-shadow: none; border-color: transparent;}
 
-/* Messagedialog */
+/* Messagedialogs */
 
-messagedialog,
-.prompt {-gtk-icon-style: regular;}
+messagedialog .dialog-action-box{ margin: 0px;}
 
-.dialog-action-box{ margin: 8px;}
+messagedialog .linked button{border-radius: 0; padding: 8px; border-width: 1px 0 0 1px; }
+
+messagedialog .linked button:first-child,
+.budgie-session-dialog .linked.horizontal > button:first-child,
+.budgie-polkit-dialog .linked.horizontal > button:first-child {border-radius: 0 0 0 3.0px; border-width: 1px 0 0 0; }
+
+messagedialog .linked button:last-child,
+.budgie-session-dialog .linked.horizontal > button:last-child,
+.budgie-polkit-dialog .linked.horizontal > button:last-child{border-radius: 0 0 3.0px 0; border-width: 1px 0 0 1px; }
+
+messagedialog .linked button:only-child{border-radius: 3.0px; border-width: 1px; }
 
 /**************
  * Base State *
@@ -940,7 +954,7 @@ notebook > header.right {
 	border-left: 1px solid @borders;
 }
 
-notebook tab{padding: 4px; color: @insensitive_fg_color;}
+notebook tab{padding: 4px; color: @insensitive_fg_color; font-weight: bold;	transition: all 200ms ease-out;}
 
 notebook header button {min-width: 20px;}
 
@@ -1042,7 +1056,7 @@ spinbutton:not(.vertical),entry {
 	padding: 4px;
 	caret-color: currentColor;
 	border-radius: 3.0px;
-	transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	transition: all 200ms ease-out;
 	color: @fg_color;
 	border-color: @borders_t;
 	box-shadow: none;
@@ -1145,7 +1159,7 @@ button label{	padding: 0 8px;}
 button{
 	min-height: 16px;
 	min-width: 16px;
-	transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	transition: all 200ms ease-out;
 	border-radius: 3.0px;
 	padding: 4px;
 	}
@@ -1190,7 +1204,7 @@ dialog .titlebar  button.text-button:not(.suggested-action):not(.destructive-act
 dialog .titlebar .linked  button:not(.suggested-action):not(.destructive-action):hover,
 .titlebar  button.text-button:not(.suggested-action):not(.destructive-action):hover,
 .titlebar .linked  button:not(.suggested-action):not(.destructive-action):hover
-{background-image: image(alpha(@fg_color,0.1));}
+{background-image: image(alpha(@fg_color,0.08));}
 
 button:active,
 .inline-toolbar button.flat:active,
@@ -1205,7 +1219,7 @@ dialog .titlebar  button.text-button:not(.suggested-action):not(.destructive-act
 dialog .titlebar .linked  button:not(.suggested-action):not(.destructive-action):checked,
 .titlebar  button.text-button:not(.suggested-action):not(.destructive-action):checked,
 .titlebar .linked  button:not(.suggested-action):not(.destructive-action):checked
-{background-image: image(alpha(@fg_color,0.2)); box-shadow: none;}
+{background-image: image(alpha(@fg_color,0.16)); box-shadow: none;}
 
 /* Disabled State */
 button:disabled,
@@ -1224,7 +1238,7 @@ dialog .titlebar  button.text-button:not(.suggested-action):not(.destructive-act
 dialog .titlebar .linked  button:not(.suggested-action):not(.destructive-action):checked:disabled,
 .titlebar  button.text-button:not(.suggested-action):not(.destructive-action):checked:disabled,
 .titlebar .linked  button:not(.suggested-action):not(.destructive-action):checked:disabled
-{ background-image: image(alpha(currentcolor,0.3)); box-shadow: none; }
+{ background-image: image(alpha(currentcolor,0.2)); box-shadow: none; }
 
 headerbar viewswitcher button:disabled,
 .fullscreen headerbar button:disabled label,
@@ -1236,22 +1250,27 @@ headerbar viewswitcher button:disabled,
 
 .titlebar.default-decoration button.titlebutton:backdrop,
 .titlebar.default-decoration:backdrop,
-.titlebar button.chromium:backdrop,
+.titlebar .titlebutton.chromium:backdrop,
 headerbar viewswitcher button:disabled,
 .fullscreen headerbar button:disabled label,
 .fullscreen headerbar button:disabled image,
 .fullscreen headerbar button:disabled,
 .titlebar  button.text-button:not(.suggested-action):not(.destructive-action):disabled,
 .titlebar .linked  button:not(.suggested-action):not(.destructive-action):disabled
-{ color:alpha(@textColorPrimary,0.3);}
+,
 
 .titlebar:backdrop label,
 .titlebar:backdrop image,
 .titlebar label:disabled,
 .titlebar image:disabled
-{color:alpha(currentcolor,0.3);}
+{color: mix(@textColorPrimary, @colorPrimaryBackdrop, 0.8);}
 
 label:disabled,image:disabled,notebook arrow:disabled,spinbutton:disabled,spinbutton.horizontal button:disabled{ color: @insensitive_fg_color;}
+
+.titlebar button.suggested-action:not(:disabled):backdrop label,
+.titlebar button.destructive-action:not(:disabled):backdrop label,
+.titlebar button.suggested-action:not(:disabled):backdrop image,
+.titlebar button.destructive-action:not(:disabled):backdrop image{ color: alpha(currentcolor,0.5);}
 
 /* Flat Buttons */
 
@@ -1827,16 +1846,22 @@ progressbar progress {
 	background-clip: border-box;
 	border: none;
 	background-color: @selected_bg_color;
-	border-radius: 3.0px;
+	border-radius: 0px;
 	color: @selected_fg_color;
 }
 
 progressbar trough {
 	background-clip: border-box;
 	border: none;
-	border-radius: 3.0px;
+	border-radius: 0px;
 	background-color: @widget_color;
 	background-image:  none;
+}
+
+treeview.view.progressbar {
+	box-shadow: inset 0 0 0 9999px @selected_bg_color ;
+	background-color: transparent;
+	background-image: none;
 }
 
 treeview.view.progressbar {
@@ -1885,25 +1910,15 @@ levelbar.vertical.discrete block {
 	margin: 1px 0;
 }
 
-levelbar block:not(.empty) {
-	background-color: @selected_bg_color;
-}
+levelbar block:not(.empty) {background-color: @selected_bg_color;}
 
-levelbar block.low {
-	background-color: @warning_color;
-}
+levelbar block.low {background-color: @warning_color;}
 
-levelbar block.high {
-	background-color: @selected_bg_color;
-}
+levelbar block.high {background-color: @selected_bg_color;}
 
-levelbar block.full {
-	background-color: @success_color;
-}
+levelbar block.full {background-color: @success_color;}
 
-levelbar block.empty {
-	background-color: @widget_color;
-}
+levelbar block.empty {background-color: @widget_color;}
 
 /****************
  * Scale Slider *
@@ -2390,11 +2405,11 @@ toolbar.osd {box-shadow: 0 1px 2px @menu_shadow; border: 1px solid @borders_t;}
  background-repeat: no-repeat; background-position: right 3px, right 4px;
 }
 
- .floating-bar {
+.nemo-window .floating-bar, .nautilus-window .floating-bar {
 	padding: 2px;
-	margin: 4px;
-	background-color: black;
-	color: white;
+	margin: 6px;
+	background-color: @selected_bg_color;
+	color: @selected_fg_color;
 	border-radius:	3.0px;
 }
 
@@ -2723,9 +2738,11 @@ button.flat.launcher image{-gtk-icon-shadow: 0 1px 2px alpha(black,0.5);}
 
 /* Raven */
 
-.raven-background	stackswitcher.linked { padding: 12px;}
+.raven-background stackswitcher.linked { padding: 12px;}
 
-.raven .raven-header.top	stackswitcher.linked > button {	font-weight: bold;	padding: 6px 12px;}
+.raven .raven-header.top stackswitcher.linked > button { font-weight: bold;	padding: 6px 12px;}
+
+.raven .raven-header.top stackswitcher.linked > button:checked{background-color: @selected_bg_color; color: @selected_fg_color; border-color: transparent; background-clip: border-box;}
 
 .raven{background-color: @bg_color; box-shadow: none; padding: 8px;}
 
@@ -2787,11 +2804,7 @@ window box.vertical scrolledwindow .frame .raven-background stack list
 	-gtk-icon-style: regular;
 }
 
-.budgie-session-dialog .linked.horizontal > button , .budgie-polkit-dialog .linked.horizontal > button { margin: 8px 0;}
-
-.budgie-session-dialog .linked.horizontal > button:first-child,.budgie-polkit-dialog .linked.horizontal > button:first-child {	margin-left: 8px;}
-
-.budgie-session-dialog .linked.horizontal > button:last-child,.budgie-polkit-dialog .linked.horizontal > button:last-child {	margin-right: 8px;}
+.budgie-session-dialog .linked.horizontal > button , .budgie-polkit-dialog .linked.horizontal > button { padding: 8;}
 
 .budgie-polkit-dialog .message {	color: @fg_color;}
 
