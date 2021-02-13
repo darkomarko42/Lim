@@ -342,7 +342,7 @@ style "murrine-scale"
 		lightborder_shade	= 1.0
 		lightborderstyle		= 1
 		roundness			= 9999
-		border_shades			= { 1.0, 1.0}
+		border_shades			= { 0.7, 0.7}
 	}
 }
 
