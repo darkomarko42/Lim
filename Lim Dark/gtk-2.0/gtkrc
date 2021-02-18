@@ -1,7 +1,7 @@
 
 # GTK originally based on Ubuntu Human code
 
-gtk_color_scheme = "fg_color:#fff\nbg_color:#333\nbase_color:#474747\ntext_color:#fff\nselected_bg_color:#AC95FF\nselected_fg_color:#000\ntooltip_bg_color:#000\ntooltip_fg_color:#fff\npanel_bg_color:#000\npanel_fg_color:#fff"
+gtk_color_scheme = "fg_color:#fff\nbg_color:#333\nbase_color:#474747\ntext_color:#fff\nselected_bg_color:#A996FA\nselected_fg_color:#000\ntooltip_bg_color:#000\ntooltip_fg_color:#fff\npanel_bg_color:#000\npanel_fg_color:#fff"
 
 # Comment the following line for large buttons
 gtk-icon-sizes = "gtk-button=16,16"

@@ -47,7 +47,7 @@
 
 @define-color deco alpha(black,0.5);
 
-@define-color selected_bg_color shade(#7F60F1,1.2);
+@define-color selected_bg_color shade(#7A62EB,1.2);
 @define-color selected_fg_color #000;
 @define-color theme_selected_bg_color @selected_bg_color;
 @define-color theme_selected_fg_color @selected_fg_color;
@@ -237,8 +237,6 @@ window.csd > .titlebar:not(headerbar):backdrop {
 	border: none;
 	box-shadow: none;
 }
-/* this fix the big headerbars with viewswitchers */
-headerbar viewswitcher stack { margin: -2px 0;}
 
 /* this is for ssd titlebars */
 .ssd .default-decoration ,.default-decoration.titlebar:not(headerbar),.csd .default-decoration.titlebar:not(headerbar){border-bottom: none;}
@@ -250,10 +248,6 @@ headerbar spinbutton,
 headerbar separator:not(.sidebar),
 headerbar button,
 headerbar .linked button { margin-top: 4px; margin-bottom: 4px; }
-
-viewswitcherbar actionbar  { padding: 0;}
-
-.narrow label{font-size: smaller;}
 
 /***********
  * Dialogs *
@@ -312,7 +306,7 @@ messagedialog .linked button:only-child{border-radius: 3.0px; border-width: 1px;
 	-GtkDialog-action-area-border: 0;
 	outline-color: alpha(currentcolor,0.3);
 	outline-style: dashed;
-	outline-offset: -2px;
+	outline-offset: -3px;
 	outline-width: 1px;
 	-gtk-outline-radius: 3.0px;
 }
@@ -665,18 +659,11 @@ list .h4{padding-left: 6px;}
  * Treeviews *
  *************/
 
-treeview.view.expander {
-  -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
-  color: @fg_color;
-}
+treeview.view.expander { -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");  color: @fg_color; }
 
-treeview.view.expander:dir(rtl) {
-  -gtk-icon-source: -gtk-icontheme("pan-end-symbolic-rtl");
-}
+treeview.view.expander:dir(rtl) { -gtk-icon-source: -gtk-icontheme("pan-end-symbolic-rtl");}
 
-treeview.view.expander:checked {
-  -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
-}
+treeview.view.expander:checked { -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");}
 
 /**************
  * Selections *
@@ -693,7 +680,8 @@ treeview.view:selected:focus.chromium,
 XfdesktopIconView.view:active,
 #MozillaGtkWidget.background > widget > scrolledwindow > textview text:selected,
 #MozillaGtkWidget.background > widget > scrolledwindow > textview text:selected:focus,
-#MozillaGtkWidget.background > widget > scrolledwindow > textview text selection{background-color: @selected_bg_color; color: @selected_fg_color;}
+#MozillaGtkWidget.background > widget > scrolledwindow > textview text selection
+{background-color: @selected_bg_color; color: @selected_fg_color;}
 
 /**************
  * Separators *
@@ -895,7 +883,7 @@ treeview.view:selected,
 treeview.view:selected:focus,
 row.activatable:hover:selected,
 treeview.view:hover:selected,
-treeview.view:hover:selected:focus{ background-image: image(alpha(@selected_bg_color,0.4)); color: @fg_color;}
+treeview.view:hover:selected:focus{ background-image: image(@selected_bg_color); color: @selected_fg_color;}
 
 row.activatable:hover,treeview.view:hover{background-image: image(alpha(@selected_bg_color,0.2)); color: @fg_color;}
 
@@ -1237,7 +1225,9 @@ label:disabled,
 image:disabled,
 notebook arrow:disabled,
 spinbutton:disabled,
-spinbutton.horizontal button:disabled{ color: @insensitive_fg_color;}
+spinbutton.horizontal button:disabled,
+treeview.view:disabled,
+treeview.view:selected:disabled{ color: @insensitive_fg_color;}
 
 .titlebar button.suggested-action:not(:disabled):backdrop label,
 .titlebar button.destructive-action:not(:disabled):backdrop label,
@@ -1269,8 +1259,7 @@ button.flat:hover,
 .titlebar button.image-button:hover,
 .titlebar button.toggle:hover,
 spinbutton.horizontal button:hover,
-.sidebar-button.image-button:hover,
-.titlebar viewswitcher button:hover
+.sidebar-button.image-button:hover
 {background-color: alpha(currentcolor,0.1);}
 
 button.flat:active,
@@ -1278,21 +1267,27 @@ button.flat:active,
 .titlebar button.image-button:active,
 .titlebar button.toggle:active,
 spinbutton.horizontal button:active,
-.sidebar-button.image-button:active,
-.titlebar viewswitcher button:active
+.sidebar-button.image-button:active
 ,
 button.flat:checked,
 .titlebar button.titlebutton:checked,
 .titlebar button.image-button:checked,
 .titlebar button.toggle:checked,
 spinbutton.horizontal button:checked,
-.sidebar-button.image-button:checked,
-.titlebar viewswitcher button:checked
+.sidebar-button.image-button:checked
 {background-color: alpha(currentcolor,0.2);}
 
 .titlebar button.sources-button.flat{padding: 2px;}
 
-actionbar viewswitcher button,.titlebar viewswitcher button
+/* Viewswitchers */
+
+viewswitcherbar actionbar{ background-color: @sidebar_color; padding: 0;}
+
+/* this fix the big headerbars with viewswitchers */
+headerbar viewswitcher stack { margin: -2px 0;}
+.narrow label{font-size: smaller;}
+
+viewswitcher button
 {
 	background-color: transparent;
 	background-image: none;
@@ -1305,6 +1300,11 @@ actionbar viewswitcher button,.titlebar viewswitcher button
 
 .titlebar viewswitcher button:checked{box-shadow: inset 0 -2px currentcolor; color: @selected_bg_color;}
 actionbar viewswitcher button:checked{box-shadow: inset 0 2px currentcolor; color: @selected_bg_color;}
+
+viewswitcher button:hover{background-color: alpha(currentcolor,0.1); background-image: none;}
+
+viewswitcher button:active,
+viewswitcher button:checked{background-image: none;}
 
 /* Suggested and Destructive Action Buttons*/
 
@@ -1363,6 +1363,10 @@ combobox arrow {
 combobox button:last-child:not(:only-child),
 combobox button:last-child:not(:only-child):disabled,
 combobox entry:first-child:focus{}
+
+combobox button cellview { padding: 0 3px;}
+combobox button{ padding: 0;}
+combobox arrow { padding: 5px;}
 
 /* Treeview Button */
 treeview button{border-width: 0 1px 1px 0; border-radius: 0; box-shadow: none; margin: 0; background-color: transparent; border-color: @borders;}
@@ -1614,7 +1618,7 @@ button:link > label, button:link, *:link { color: @selected_bg_color; }
 button:visited > label,	button:visited{ color: mix(@selected_bg_color,@error_color,0.5); }
 button:link > label:disabled, button:visited > label:disabled, button:disabled:link, button:disabled:visited, *:link:disabled { color: alpha(@selected_bg_color,0.5); }
 
-/* Check and Radio Buttons*/
+/* Check and Radio */
 
 check,radio {	-gtk-icon-source: none;}
 check:checked {	-gtk-icon-source: -gtk-recolor(url("assets/checkbox-symbolic.svg"));}
@@ -1622,11 +1626,12 @@ check:indeterminate {	-gtk-icon-source: -gtk-recolor(url("assets/checkbox-mixed-
 radio:checked {	-gtk-icon-source: -gtk-recolor(url("assets/radio-symbolic.svg"));}
 radio:indeterminate {	-gtk-icon-source: -gtk-recolor(url("assets/radio-mixed-symbolic.svg"));}
 
-/* Sizes of check and radio buttons */
+/* Sizes of check and radio */
 check,
 radio,
 treeview.view check:selected ,
 treeview.view radio:selected{min-height: 14px;	min-width: 14px;}
+
 window	flowbox grid overlay check,
 .view.content-view.check:not(list),
 iconview.content-view.check:not(list),
@@ -1651,17 +1656,14 @@ check,
 .view.content-view.check:not(list),
 iconview.content-view.check:not(list),
 .content-view:not(list) check{border-radius: 3.0px;}
+
 radio{border-radius: 9999px;}
 
 check,
 radio,
-treeview.view check:selected ,
-treeview.view radio:selected,
 .view.content-view.check:not(list),
 iconview.content-view.check:not(list),
-.content-view:not(list) check,
-treeview.view check:selected,
-treeview.view radio:selected {
+.content-view:not(list) check {
 	transition: all 270ms cubic-bezier(0, 0, 0.2, 1);
 	background-clip: padding-box;
 	padding: 0px;
@@ -1682,9 +1684,7 @@ radio:checked,
 radio:indeterminate,
 .view.content-view.check:not(list):checked,
 iconview.content-view.check:not(list):checked,
-.content-view:not(list) check:checked,
-treeview.view check:checked:selected,
-treeview.view radio:checked:selected {
+.content-view:not(list) check:checked{
 	background-color: @selected_bg_color;
 	color: @selected_fg_color;
 	background-image: none;
@@ -1695,11 +1695,7 @@ check:indeterminate:disabled,
 radio:checked:disabled,
 radio:indeterminate:disabled,
 check:disabled ,
-radio:disabled,
-treeview.view check:disabled:checked:selected,
-treeview.view radio:disabled:checked:selected,
-treeview.view check:disabled:selected,
-treeview.view radio:disabled:selected{
+radio:disabled{
 	color: @insensitive_fg_color;
 	background-color: @insensitive_bg_color;
 	-gtk-icon-shadow: none;
@@ -1707,6 +1703,26 @@ treeview.view radio:disabled:selected{
 	background-image: none;
 	border-color: @borders;
 }
+
+/* List Check and Radio */
+
+treeview.view check:selected,
+treeview.view radio:selected,
+treeview.view check:checked:selected,
+treeview.view radio:checked:selected,
+row.activatable:selected check,
+row.activatable:selected radio,
+row.activatable:selected check:checked,
+row.activatable:selected radio:checked
+{border-color: currentcolor; background-color: transparent;}
+
+treeview.view check:disabled:checked:selected,
+treeview.view radio:disabled:checked:selected,
+treeview.view check:disabled:selected,
+treeview.view radio:disabled:selected
+{border-color: alpha(currentcolor,0.5); background-color: transparent;}
+
+/* Menu Check and Radio */
 
 menu menuitem check, menu menuitem
 radio {
@@ -1725,7 +1741,8 @@ radio:dir(rtl) {
 	margin-left: 8px;
 }
 
-/* Popups check and radio buttons */
+/* Popups check and radio */
+
 menuitem check,
 menuitem check:hover,
 menuitem check:checked,
@@ -1756,7 +1773,10 @@ popover radio:disabled:checked,
 popover radio:disabled:indeterminate
 {background: none; color: inherit; border: none; background-image: none; box-shadow: none;}
 
-/* Switchers */
+/*************
+ * Switchers *
+ *************/
+ 
 switch {
 	transition: all 270ms cubic-bezier(0, 0, 0.2, 1);
 	border: 1px solid @borders_t;
@@ -2846,3 +2866,8 @@ popover .circular image{  color: @colorAccent;}
 
 window.background:not(.csd) > window > menu,
 window.background:not(.csd) > menu > menu {  border: none; }
+
+/****************
+ * Libre-Office *
+ ****************/
+window.background:not(.csd):not(.solid-csd) > grid.horizontal > grid.horizontal {  background-color: @colorPrimary; }
