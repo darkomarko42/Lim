@@ -1,7 +1,7 @@
 
 # GTK originally based on Ubuntu Human code
 
-gtk_color_scheme = "fg_color:#000\nbg_color:#f3f3f3\nbase_color:#fff\ntext_color:#000\nselected_bg_color:#7A62EB\nselected_fg_color:#fff\ntooltip_bg_color:#000\ntooltip_fg_color:#fff\npanel_bg_color:#000\npanel_fg_color:#fff"
+gtk_color_scheme = "fg_color:#000\nbg_color:#e6e6e6\nbase_color:#fff\ntext_color:#000\nselected_bg_color:#7A62EB\nselected_fg_color:#fff\ntooltip_bg_color:#000\ntooltip_fg_color:#fff\npanel_bg_color:#000\npanel_fg_color:#fff"
 
 # Comment the following line for large buttons
 gtk-icon-sizes = "gtk-button=16,16"
@@ -189,7 +189,7 @@ style "murrine-tasklist" = "murrine-wide"
 style "murrine-menubar"
 {
 
-	bg[NORMAL] = "#DBDBDB"
+	bg[NORMAL] = shade(0.9,@bg_color)
 	fg[NORMAL] = @fg_color
 engine "murrine" {
 		contrast                = 1.0
@@ -237,8 +237,8 @@ engine "murrine"
 
 style "murrine-menubar-item" = "murrine-menu-item"
 {
-	bg[SELECTED] = mix(0.1,@fg_color, "#DBDBDB")
-	bg[PRELIGHT] = mix(0.1,@fg_color, "#DBDBDB")
+	bg[SELECTED] = mix(0.1,@fg_color, shade(0.9,@bg_color))
+	bg[PRELIGHT] = mix(0.1,@fg_color, shade(0.9,@bg_color))
 	fg[SELECTED] = @fg_color
 	fg[PRELIGHT] = @fg_color
 
