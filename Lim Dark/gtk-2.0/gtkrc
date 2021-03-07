@@ -1,7 +1,7 @@
 
 # GTK originally based on Ubuntu Human code
 
-gtk_color_scheme = "fg_color:#fff\nbg_color:#363636\nbase_color:#4b4b4b\ntext_color:#fff\nselected_bg_color:#A996FA\nselected_fg_color:#000\ntooltip_bg_color:#000\ntooltip_fg_color:#fff\npanel_bg_color:#000\npanel_fg_color:#fff"
+gtk_color_scheme = "fg_color:#fff\nbg_color:#444\nbase_color:#5c5c5c\ntext_color:#fff\nselected_bg_color:#9B94F3\nselected_fg_color:#000\ntooltip_bg_color:#000\ntooltip_fg_color:#fff\npanel_bg_color:#000\npanel_fg_color:#fff"
 
 # Comment the following line for large buttons
 gtk-icon-sizes = "gtk-button=16,16"
@@ -189,7 +189,7 @@ style "murrine-tasklist" = "murrine-wide"
 style "murrine-menubar"
 {
 
-	bg[NORMAL] = "#2b2b2b"
+	bg[NORMAL] = "#343434"
 	fg[NORMAL] = @fg_color
 engine "murrine" {
 		contrast                = 1.0
@@ -219,10 +219,10 @@ style "murrine-menu-item"
   xthickness = 0
   ythickness = 4
 
-	bg[PRELIGHT] = mix(0.1,@fg_color, @base_color)
-	fg[PRELIGHT] = @fg_color
-	bg[SELECTED] = mix(0.1,@fg_color, @base_color)
-	fg[SELECTED] = @fg_color
+	bg[PRELIGHT] = @selected_bg_color
+	fg[PRELIGHT] = @selected_fg_color
+	bg[SELECTED] = @selected_bg_color
+	fg[SELECTED] = @selected_fg_color
 
 	text[NORMAL]	= @fg_color
 	text[PRELIGHT]	= @fg_color
@@ -237,8 +237,8 @@ engine "murrine"
 
 style "murrine-menubar-item" = "murrine-menu-item"
 {
-	bg[SELECTED] = mix(0.9,"#2b2b2b", @fg_color)
-	bg[PRELIGHT] = mix(0.9,"#2b2b2b", @fg_color)
+	bg[SELECTED] = mix(0.9,"#343434", @fg_color)
+	bg[PRELIGHT] = mix(0.9,"#343434", @fg_color)
 	fg[SELECTED] = @fg_color
 	fg[PRELIGHT] = @fg_color
 
@@ -341,7 +341,7 @@ style "murrine-scale"
 		contrast                = 2.0
 		lightborder_shade	= 1.0
 		lightborderstyle		= 1
-		roundness			= 9999
+		roundness			= 4
 		border_shades			= { 0.7, 0.7}
 	}
 }
@@ -655,7 +655,7 @@ widget_class "*.<GtkComboBox>.<GtkCellView>"		style "murrine-combobox-text-color
 style "murrine-menuitem-text-is-fg-color-workaround"
 {
 	text[NORMAL]        = @fg_color
-	text[PRELIGHT]      = @fg_color
+	text[PRELIGHT]      = @selected_fg_color #this is the highlight text
 	text[ACTIVE]        = @fg_color
 	text[SELECTED]      = @fg_color
 	text[INSENSITIVE]   = mix (0.5,@bg_color, @fg_color)
