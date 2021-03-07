@@ -2829,6 +2829,8 @@ button.flat.launcher image{-gtk-icon-shadow: 0 1px 2px @shadow;}
 	}
 .raven .raven-header.top stackswitcher.linked button:checked{background-color: alpha(currentcolor,0.15);}
 
+.raven-background  stackswitcher.linked { padding: 8px;}
+
 .raven{background-color: @bg_color; box-shadow: none; }
 
 frame.raven-frame > border {border: none;}
