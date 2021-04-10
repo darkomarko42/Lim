@@ -3,16 +3,16 @@
  **********/
 
 @define-color button_color @base_color;
-@define-color alt_button_color @button_color;
+@define-color alt_button_color mix(@colorPrimary,white,0.2);
 @define-color widget_color alpha(@fg_color,0.2);
 @define-color panel_bg shade(@colorPrimary,0.9);
 @define-color panel_fg @textColorPrimary;
 
-@define-color colorPrimary mix(@sidebar_color,@fg_color,0.05);
-@define-color textColorPrimary @fg_color;
+@define-color colorPrimary mix(@selected_bg_color,black,0.3);
+@define-color textColorPrimary @selected_fg_color;
 @define-color sidebar_color mix(@bg_color,@fg_color,0.05);
 
-@define-color colorPrimaryBackdrop mix(@colorPrimary,white,0.5);
+@define-color colorPrimaryBackdrop mix(@colorPrimary,white,0.2);
 @define-color textColorPrimaryShadow @text_shadow_color;
 
 @define-color theme_fg_color @fg_color;

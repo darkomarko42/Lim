@@ -3,16 +3,16 @@
  **********/
 
 @define-color button_color @base_color;
-@define-color alt_button_color @button_color;
+@define-color alt_button_color mix(@colorPrimary,white,0.2);
 @define-color widget_color alpha(@fg_color,0.2);
 @define-color panel_bg shade(@colorPrimary,0.9);
 @define-color panel_fg @textColorPrimary;
 
-@define-color colorPrimary mix(@sidebar_color,@fg_color,0.05);
-@define-color textColorPrimary @fg_color;
-@define-color sidebar_color mix(@bg_color,@fg_color,0.05);
+@define-color colorPrimary mix(@selected_bg_color,black,0.3);
+@define-color textColorPrimary @selected_fg_color;
+@define-color sidebar_color mix(@bg_color,black,0.1);
 
-@define-color colorPrimaryBackdrop mix(@colorPrimary,white,0.5);
+@define-color colorPrimaryBackdrop mix(@colorPrimary,white,0.2);
 @define-color textColorPrimaryShadow @text_shadow_color;
 
 @define-color theme_fg_color @fg_color;
@@ -24,10 +24,10 @@
 @define-color theme_unfocused_bg_color @bg_color;
 @define-color theme_unfocused_base_color @base_color;
 
-@define-color fg_color black;
+@define-color fg_color white;
 @define-color text_color @fg_color;
-@define-color bg_color #E6E6E6;
-@define-color base_color mix(@bg_color,white,0.5);
+@define-color bg_color #333;
+@define-color base_color mix(@bg_color,white,0.1);
 @define-color text_view_bg @base_color;
 @define-color content_view_bg @base_color;
 
@@ -43,9 +43,9 @@
 @define-color menu_shadow alpha(@shadow,0.2);
 @define-color shadow alpha(black,0.5);
 
-@define-color borders mix(@bg_color,black,0.25);
+@define-color borders mix(@bg_color,black,0.5);
 @define-color unfocused_borders @borders;
-@define-color border_color alpha(black,0.25);
+@define-color border_color @borders;
 
 @define-color deco @border_color;
 
@@ -1394,7 +1394,7 @@ viewswitcher button
 /* Action Button */
 
 button.destructive-action,button.suggested-action{
-	background-clip: border-box;
+	background-clip: padding-box;
 	font-weight: bold;
 	}
 
@@ -1845,7 +1845,7 @@ row.activatable:selected check:checked,
 row.activatable:selected radio:checked{
 	background-color: @selected_bg_color;
 	color: @selected_fg_color;
-	background-clip: border-box;
+	background-clip: padding-box;
 }
 
 check:checked:disabled,
@@ -1923,7 +1923,7 @@ popover radio:disabled:indeterminate
  
 switch {
 	transition: all 270ms cubic-bezier(0, 0, 0.2, 1);
-	background-clip: border-box;
+	background-clip: padding-box;
 	font-size: 0;
 	color: @widget_color;
 	border: 1px solid @border_color;
