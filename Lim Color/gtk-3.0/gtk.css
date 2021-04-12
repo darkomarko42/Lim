@@ -935,7 +935,7 @@ row.activatable:hover:selected,
 treeview.view:selected,
 treeview.view:selected:focus,
 treeview.view:hover:selected,
-treeview.view:hover:selected:focus{ background-image: image(alpha(currentcolor,0.16));}
+treeview.view:hover:selected:focus{ background-image: image(@selected_bg_color);}
 
 row.activatable:selected,
 row.activatable:hover:selected,
@@ -952,7 +952,7 @@ dialog list row.activatable:hover:selected,
 treeview.view:selected,
 treeview.view:selected:focus,
 treeview.view:hover:selected,
-treeview.view:hover:selected:focus{color: currentcolor;}
+treeview.view:hover:selected:focus{color: @selected_fg_color;}
 
 row.activatable:hover,treeview.view:hover{ background-image: image(alpha(currentcolor,0.08));}
 
@@ -1811,11 +1811,7 @@ check,
 radio,
 .view.content-view.check:not(list),
 iconview.content-view.check:not(list),
-.content-view:not(list) check,
-treeview.view check:selected,
-treeview.view radio:selected,
-row.activatable:selected check,
-row.activatable:selected radio {
+.content-view:not(list) check{
 	transition: all 270ms cubic-bezier(0, 0, 0.2, 1);
 	background-clip: padding-box;
 	padding: 0px;
@@ -1838,11 +1834,7 @@ radio:checked,
 radio:indeterminate,
 .view.content-view.check:not(list):checked,
 iconview.content-view.check:not(list):checked,
-.content-view:not(list) check:checked,
-treeview.view check:checked:selected,
-treeview.view radio:checked:selected,
-row.activatable:selected check:checked,
-row.activatable:selected radio:checked{
+.content-view:not(list) check:checked{
 	background-color: @selected_bg_color;
 	color: @selected_fg_color;
 	background-clip: border-box;
@@ -1852,12 +1844,8 @@ check:checked:disabled,
 check:indeterminate:disabled,
 radio:checked:disabled,
 radio:indeterminate:disabled,
-check:disabled ,
-radio:disabled,
-treeview.view check:disabled:checked:selected,
-treeview.view radio:disabled:checked:selected,
-treeview.view check:disabled:selected,
-treeview.view radio:disabled:selected{
+check:disabled,
+radio:disabled{
 	color: @insensitive_fg_color;
 	background-color: @insensitive_bg_color;
 	-gtk-icon-shadow: none;
@@ -1865,6 +1853,23 @@ treeview.view radio:disabled:selected{
 	background-image: none;
 	border-color: @borders;
 }
+
+/* Treeview Check and Radio */
+
+treeview.view check:selected,
+treeview.view radio:selected,
+row.activatable:selected check,
+row.activatable:selected radio,
+treeview.view check:checked:selected,
+treeview.view radio:checked:selected,
+row.activatable:selected check:checked,
+row.activatable:selected radio:checked
+{background-color: @selected_fg_color; color: @selected_bg_color; border-color: transparent;}
+
+treeview.view check:disabled:checked:selected,
+treeview.view radio:disabled:checked:selected,
+treeview.view check:disabled:selected,
+treeview.view radio:disabled:selected{background-color: alpha(currentcolor,0.5); color: alpha(currentcolor,0.5); border-color: transparent;}
 
 /* Menu Check and Radio */
 
@@ -1916,7 +1921,6 @@ popover radio:disabled,
 popover radio:disabled:checked,
 popover radio:disabled:indeterminate
 {background: none; color: inherit; border: none; background-image: none; box-shadow: none; animation: none; transition: none;}
-
 /*************
  * Switchers *
  *************/
@@ -2263,11 +2267,19 @@ popover button.menuitem:active,popover button.menuitem:checked{background-color:
 menu menuitem:hover,
 .menu menuitem:hover,
 
-menuitem.button.flat:hover,popover button.menuitem:hover, popover .menuitem:hover, popover .menuitem.activatable:hover,
-modelbutton.flat:hover , .budgie-popover button.flat:hover
+menuitem.button.flat:hover,
+popover button.menuitem:hover,
+popover .menuitem:hover,
+popover .menuitem.activatable:hover,
+modelbutton.flat:hover,
+.budgie-popover button.flat:hover,
+.budgie-menu .categories button.flat:checked,
+.budgie-popover row.activatable:selected,
+.budgie-popover .sidebar .frame row.activatable:hover,
+.budgie-popover .sidebar .frame row.activatable:selected
 {
-	background-color: alpha(@fg_color,0.1);
-	color: currentcolor;
+	background-color: @selected_bg_color;
+	color: @selected_fg_color;
 	background-image: none;
 	box-shadow:  none;
 }
@@ -2863,7 +2875,7 @@ button.flat.launcher image{-gtk-icon-shadow: 0 1px 2px @shadow;}
 .budgie-panel button.launcher.flat:active,
 .budgie-panel button.launcher.flat:checked{background-color: alpha(@panel_fg,0.15);}
 
-/* BUDGIE POPOVERS */
+/* Budgie Popover */
 
 .budgie-popover .sidebar row{ padding: 12px 0;}
 
@@ -2891,7 +2903,6 @@ button.flat.launcher image{-gtk-icon-shadow: 0 1px 2px @shadow;}
 .budgie-popover .sidebar{ border: none; padding: 6px 0;}
 
 .budgie-menu .categories button.flat{padding: 8px 0; margin: 2px 4px; border-radius: 9999px; border: none;}
-.budgie-menu .categories button.flat:checked{background-color: alpha(currentcolor,0.2);}
 
 .budgie-popover separator{ margin: 6px 0;}
 
@@ -2900,9 +2911,6 @@ button.flat.launcher image{-gtk-icon-shadow: 0 1px 2px @shadow;}
 .budgie-menu .sidebar .frame{background-color: transparent; border-right: 1px solid @border_color;}
 
 .budgie-popover row.activatable {background-color: transparent; background-image: none;}
-.budgie-popover row.activatable:selected,.budgie-popover .sidebar .frame row.activatable:hover {background: none; box-shadow: inset 0 0 0 9999px alpha(@fg_color,0.1); color: inherit;}
-
-.budgie-popover .sidebar .frame row.activatable:selected{box-shadow: inset 0 0 0 9999px alpha(@fg_color,0.2);}
 
 .budgie-popover scrolledwindow list,.budgie-popover .sidebar .frame{background-color: transparent;}
 
