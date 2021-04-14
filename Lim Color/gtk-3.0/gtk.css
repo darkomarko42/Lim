@@ -674,6 +674,7 @@ filechooser stack.view scrolledwindow treeview.view .content-view flowbox Xfdesk
 XfdesktopIconView.view filechooser stack.view scrolledwindow treeview.view .content-view flowbox .rubberband {
 	border: 1px solid mix(@selected_bg_color,@fg_color,0.2);
 	background-color: alpha(@selected_bg_color,0.3);
+	border-radius: 0;
 }
 
 .h1 {

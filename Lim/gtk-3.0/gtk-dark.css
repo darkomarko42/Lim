@@ -674,6 +674,7 @@ filechooser stack.view scrolledwindow treeview.view .content-view flowbox Xfdesk
 XfdesktopIconView.view filechooser stack.view scrolledwindow treeview.view .content-view flowbox .rubberband {
 	border: 1px solid mix(@selected_bg_color,@fg_color,0.2);
 	background-color: alpha(@selected_bg_color,0.3);
+	border-radius: 0;
 }
 
 .h1 {
@@ -1837,7 +1838,6 @@ iconview.content-view.check:not(list):checked,
 .content-view:not(list) check:checked{
 	background-color: @selected_bg_color;
 	color: @selected_fg_color;
-	background-clip: border-box;
 }
 
 check:checked:disabled,
@@ -1864,12 +1864,12 @@ treeview.view check:checked:selected,
 treeview.view radio:checked:selected,
 row.activatable:selected check:checked,
 row.activatable:selected radio:checked
-{background-color: @selected_fg_color; color: @selected_bg_color; border-color: transparent;}
+{background-color: @selected_fg_color; color: @selected_bg_color; border-color: transparent; background-clip: border-box;}
 
 treeview.view check:disabled:checked:selected,
 treeview.view radio:disabled:checked:selected,
 treeview.view check:disabled:selected,
-treeview.view radio:disabled:selected{background-color: alpha(currentcolor,0.5); color: alpha(currentcolor,0.5); border-color: transparent;}
+treeview.view radio:disabled:selected{background-color: alpha(currentcolor,0.5); color: alpha(currentcolor,0.5); border-color: transparent; background-clip: border-box;}
 
 /* Menu Check and Radio */
 
