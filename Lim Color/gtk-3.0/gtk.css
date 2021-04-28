@@ -18,7 +18,7 @@
 @define-color theme_fg_color black;
 @define-color theme_text_color @theme_fg_color;
 @define-color theme_bg_color #e6e6e6;
-@define-color theme_base_color mix(@theme_bg_color,white,0.9);
+@define-color theme_base_color #fff;
 
 @define-color theme_unfocused_fg_color @theme_fg_color;
 @define-color theme_unfocused_text_color @theme_fg_color;
@@ -1134,11 +1134,13 @@ spinbutton:not(.vertical),entry {
 	transition: all 200ms ease-out;
 	color: @theme_fg_color;
 	box-shadow:  none;
-	background-color: @theme_base_color;
+	background-color: @button_color;
 	background-image: none;
 }
 
-spinbutton:not(.vertical):focus,entry:focus {
+spinbutton:not(.vertical):focus,
+entry:focus,
+.gedit-search-slider entry:focus {
 	background-clip: border-box;
 	border-color: @selected_bg_color;
 	box-shadow: inset 0 0 0 1px @selected_bg_color;
@@ -1159,7 +1161,7 @@ entry.warning selection, entry.warning selection:focus {
 	color: white;
 }
 
-entry.error {
+entry.error,.gedit-search-slider entry.error {
 	color: @error_color;
 	border-color: @error_color;
 	box-shadow: inset 0 0 0 1px @error_color;
@@ -1462,7 +1464,7 @@ combobox button cellview { padding: 0 2px;}
 combobox button{ padding: 0;}
 
 /* Treeview Button */
-treeview button{border-width: 0 1px 1px 0; border-radius: 0; box-shadow: none; margin: 0; background-image: none; border-color: @transparent_border;}
+treeview button{border-width: 0 1px 1px 0; border-radius: 0; box-shadow: none; margin: 0; background-color: @theme_bg_color; border-color: @transparent_border;}
 
 treeview button:last-child{border-right: none;}
 
@@ -2677,6 +2679,15 @@ omnibar *{padding: 0 4px;}
 	background: none;
 }
 
+.gedit-search-slider entry
+{
+	background-color: alpha(currentcolor,0.2);
+	border-color: transparent;
+}
+
+.gedit-search-slider  entry image,
+.gedit-search-slider entry { color: currentcolor;}
+
 /* Tweaks */
 .tweak-categories {	background-image: image(@sidebar_color);}
 stack viewport .tweak list	{ border: 1px solid @borders; border-radius: 0px;}
@@ -2923,7 +2934,7 @@ button.flat.launcher image{-gtk-icon-shadow: 0 1px 2px @shadow;}
 
 .raven{background-color: @panel_bg; box-shadow: none; color: @panel_fg;}
 
-.raven stack{ padding: 8px}
+.raven stack .frame{ padding: 8px}
 .raven .raven-header.top stackswitcher.linked{ padding: 4px}
 
 .raven-header{font-weight: bold;}
